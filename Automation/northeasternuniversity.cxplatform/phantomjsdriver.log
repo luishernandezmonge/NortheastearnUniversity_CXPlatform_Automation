@@ -1,0 +1,9 @@
+[INFO  - 2017-05-29T23:07:41.687Z] GhostDriver - Main - running on port 37014
+[INFO  - 2017-05-29T23:07:41.999Z] Session [9e1a88a0-44c3-11e7-81d2-ed21b881e42d] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2017-05-29T23:07:41.999Z] Session [9e1a88a0-44c3-11e7-81d2-ed21b881e42d] - page.customHeaders:  - {}
+[INFO  - 2017-05-29T23:07:41.999Z] Session [9e1a88a0-44c3-11e7-81d2-ed21b881e42d] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"mac-10.11 (El Capitan)-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2017-05-29T23:07:41.999Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 9e1a88a0-44c3-11e7-81d2-ed21b881e42d
+[ERROR - 2017-05-29T23:10:45.145Z] Session [9e1a88a0-44c3-11e7-81d2-ed21b881e42d] - page.onError - msg: Error: Load timeout for modules: frontend-js-spa-web@1.0.22/liferay/init.es
+[ERROR - 2017-05-29T23:10:45.146Z] Session [9e1a88a0-44c3-11e7-81d2-ed21b881e42d] - page.onError - stack:
+  (anonymous function) (https://dev-lr.northeastern.edu/group/guest:755)
+[INFO  - 2017-05-29T23:11:46.001Z] ShutdownReqHand - _handle - About to shutdown
