@@ -2,6 +2,11 @@ package northeasternunversity.cxplatform.employeeportaltestcases.userprofile;
 
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
+
+import static org.testng.Assert.assertTrue;
+
+import java.util.List;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -9,32 +14,32 @@ import northeasternuniversity.cxplatform.pages.general.*;
 import northeasternuniversity.cxplatform.webdriver.*;
 import northeasternuniversity.cxplatform.constants.*;
 import northeasternuniversity.cxplatform.pages.staffemployeeportal.*;
-import northeasternuniversity.cxplatform.utilities.HTTPResponsesChecker;
 
 public class AppsAndLinksTestCases {
 
 	LoginPage loginPage;
+	HomePage homePage;
+	AppsAndLinksPage appsAndLinksPage;
+
 	WebDriverManager driverManager;
 	UIElementsPropertiesManager UIElementsPropertiesManager;
 	ConstantsPropertiesManager constantsPropertiesManager;
-	HomePage homePage;
+
 	DataSourceManager dataSourceManager;
-	HTTPResponsesChecker httpResponsesChecker;
 
 	String userName;
 	String password;
 	String expectedURLPage;
 
-	@Test
-	public void test() {
-		System.out.println(
-				"Testing #TESTCASE_ID: Summary: Verify the application redirects to the Apps&Links Page Properly when Apps&Links tab is clicked");
+	@Test(priority = 1)
+	public void NUCP119() {
+
+		// JIRA test case ID & Description for Automated Test Case
+		System.out.println("Test Case NUCP-119:" + "\n"
+				+ "Summary: Verify that the application displays correct page when a tab navigation option clicked on the Dashboard Page");
 
 		loginPage.setCredentials(userName, password);
-
 		loginPage.loginClick();
-		homePage.getDriverManager().maximizeWindow();
-		homePage.getDriverManager().driverWait();
 		homePage.goToHomePage();
 
 		// Verifying if we are positioned on the site dashboard page
@@ -43,15 +48,55 @@ public class AppsAndLinksTestCases {
 
 		// Waiting for the web browser, it should loads all the elements on the
 		// DOM
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverShortWait();
 
+		// Verifying if the Element to be clicked is present on the DOM
 		Assert.assertTrue(homePage.isAppsAndLinksLinkElementPresent());
-		homePage.appsAndLinksLocatorClick();
+		homePage.appsAndLinksTabClick();
 
 		// Waiting for the web browser, it should loads all the new elements on
 		// the DOM
-		homePage.getDriverManager().driverWait();
-		AssertJUnit.assertEquals(driverManager.getDriver().getCurrentUrl(), expectedURLPage);
+		homePage.getDriverManager().driverLongWait();
+		// Verifying if the redirected URL (current) is the expected by user
+		AssertJUnit.assertEquals(expectedURLPage, driverManager.getDriver().getCurrentUrl());
+
+	}
+
+	@Test(priority = 2)
+	public void NUCP26() {
+		// JIRA test case ID & Description for Automated Test Case
+		System.out.println("Test Case NUCP-26:" + "\n"
+				+ "Summary: Verify that the application allows to pin a Link/Service as Fav/Quick Link on the “Recent Links” section");
+
+		// Verifying if the Element to be clicked is present on the DOM
+		Assert.assertTrue(homePage.isAppsAndLinksLinkElementPresent());
+		homePage.appsAndLinksTabClick();
+
+		// Waiting for the web browser, it should loads all the new elements on
+		// the DOM
+		homePage.getDriverManager().driverLongWait();
+		// Verifying if the redirected URL (current) is the expected by user
+		AssertJUnit.assertEquals(expectedURLPage, driverManager.getDriver().getCurrentUrl());
+
+		appsAndLinksPage.getDriverManager().driverLongWait();
+		
+		// Verifying if the recent link list is present on the DOM
+		Assert.assertTrue(appsAndLinksPage.isRecentLinksListDivElementPresent());
+		
+		// Verifying if the quick link list is present on the DOM
+		Assert.assertTrue(appsAndLinksPage.isQuickLinksListDivElementPresent());
+		
+		if (appsAndLinksPage.hasRecentLinks()) {
+			List<WebElement> recentLinks = appsAndLinksPage.getAllElementsOnRecentLinksList();
+			appsAndLinksPage.pinARecentLinkToQuickLinks();
+			appsAndLinksPage.getDriverManager().driverShortWait();
+			
+			assertTrue(appsAndLinksPage.hasQuickLinks());
+			for (WebElement element : recentLinks) {
+				Assert.assertTrue(appsAndLinksPage.isElementOnQuickLinks(element.getText()));
+			}
+
+		}else System.out.println("No recent links on Recent Links Portlet");
 
 	}
 
@@ -68,6 +113,8 @@ public class AppsAndLinksTestCases {
 
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
+		this.appsAndLinksPage = new AppsAndLinksPage(driverManager, UIElementsPropertiesManager,
+				constantsPropertiesManager);
 
 		int userNameIndex = Integer
 				.parseInt(constantsPropertiesManager.getSharedExecutionConstants().getProperty("userNameIndex"));
@@ -81,8 +128,6 @@ public class AppsAndLinksTestCases {
 				"OptionsAndExpectedURLS", 1);
 		this.expectedURLPage = dataSourceManager.getDataValue(1);
 		dataSourceManager.closeIO();
-
-		httpResponsesChecker = new HTTPResponsesChecker();
 
 	}
 

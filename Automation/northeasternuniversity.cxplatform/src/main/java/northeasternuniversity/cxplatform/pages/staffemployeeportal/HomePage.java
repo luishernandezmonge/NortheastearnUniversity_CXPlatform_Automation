@@ -57,13 +57,13 @@ public class HomePage {
 		return this.isElementPresent(appsAndLinksLocator);
 	}
 
-	public void appsAndLinksLocatorClick() {
+	public void appsAndLinksTabClick() {
 		WebElement appsAndLinksLinkWebElement = driverManager.getDriver().findElement(By.xpath(appsAndLinksLocator));
-		appsAndLinksLinkWebElement.click();
+		if (appsAndLinksLinkWebElement.isDisplayed())
+			appsAndLinksLinkWebElement.click();
 	}
 
 	public void goToHomePage() {
-		driverManager.driverWait();
 		this.driver
 				.get(constantsPropertiesManager.getSharedExecutionConstants().getProperty("northeastern.edu_homepageurl"));
 	}

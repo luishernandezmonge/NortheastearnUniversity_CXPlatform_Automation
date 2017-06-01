@@ -5,9 +5,10 @@
     <classes>
       <class name="northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases">
         <methods>
-          <include name="afterTest"/>
           <include name="beforeTest"/>
-          <include name="test"/>
+          <include name="Example1"/>
+          <include name="afterTest"/>
+          <include name="Example2"/>
         </methods>
       </class> <!-- northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases -->
     </classes>

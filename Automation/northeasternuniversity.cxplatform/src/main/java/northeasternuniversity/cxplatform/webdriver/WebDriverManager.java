@@ -1,17 +1,17 @@
 package northeasternuniversity.cxplatform.webdriver;
 
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.safari.SafariDriver;
-
 import northeasternuniversity.cxplatform.constants.ConstantsPropertiesManager;
 import northeasternuniversity.cxplatform.constants.FilesLocations;
 
+import java.awt.Toolkit;
 import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.Dimension;
 
 public class WebDriverManager {
 
@@ -43,8 +43,9 @@ public class WebDriverManager {
 			// if not recognized web browser, it run by default with Firefox
 			driver = new FirefoxDriver();
 		}
-
+		this.maximizeWindow();
 		driver.get(constantsPropertiesManager.getSharedExecutionConstants().getProperty("northeastern.edu_baseUrl"));
+
 	}
 
 	public void closeConnection() {
@@ -53,10 +54,14 @@ public class WebDriverManager {
 	}
 
 	public void maximizeWindow() {
-		// driver.manage().window().maximize();
-		Dimension d = new Dimension(1400, 1600);
-		// Resize current window to the set dimension
-		driver.manage().window().setSize(d);
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		int width = (int) toolkit.getScreenSize().getWidth();
+		int height = (int) toolkit.getScreenSize().getHeight();
+
+		this.driver.manage().window().setPosition(new Point(0, 0));
+		this.driver.manage().window().maximize();
+		this.driver.manage().window().setSize(new Dimension(width, height));
+
 	}
 
 	public WebDriver getDriver() {
@@ -67,9 +72,20 @@ public class WebDriverManager {
 		this.driver = driver;
 	}
 
-	public void driverWait() {
+	public void driverShortWait() {
 		long wait = Long
-				.parseLong(constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultWaitTime"));
+				.parseLong(constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultShortWaitTime"));
+		this.driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
+		try {
+			Thread.sleep(wait);
+		} catch (InterruptedException ie1) {
+			ie1.printStackTrace();
+		}
+	}
+	
+	public void driverLongWait() {
+		long wait = Long
+				.parseLong(constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultLongWaitTime"));
 		this.driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
 		try {
 			Thread.sleep(wait);

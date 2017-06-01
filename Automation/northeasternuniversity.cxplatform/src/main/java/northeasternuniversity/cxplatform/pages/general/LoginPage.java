@@ -36,18 +36,16 @@ public class LoginPage {
 		this.uIElementsManager = UIElementsPropertiesManager;
 		this.driver = this.driverManager.getDriver();
 		
-	    this.driverManager.driverWait();
 	    signInLinkLocator = uIElementsManager.getSharedUIElementsLocators().getProperty("northeastern.edu.signinpage.sigin_link");
 		signInClick();
 		
-		this.driverManager.driverWait();	
+		this.driverManager.driverShortWait();	
 	    userNameTextBoxLocator = uIElementsManager.getSharedUIElementsLocators().getProperty("northeasternn.edu.signinpage.txtbox_UserName");
 		passwordTextBoxLocator = uIElementsManager.getSharedUIElementsLocators().getProperty("northeasternn.edu.signinpage.txtbox_Password");
 		loginButtonLocator = uIElementsManager.getSharedUIElementsLocators().getProperty("northeasternn.edu.signinpage.btn_Login");
 	}
 
 	public void setCredentials(String usernameValue, String passwordValue) {
-		this.driverManager.driverWait();
 		
 		WebElement userNameWebElement = driver.findElement(By.xpath(userNameTextBoxLocator));
 		userNameWebElement.clear();
@@ -59,13 +57,13 @@ public class LoginPage {
 	}
 
 	public void signInClick(){
-		this.driverManager.driverWait();
+		this.driverManager.driverShortWait();
 		WebElement signInLinkELement = driver.findElement(By.xpath(signInLinkLocator));
 		signInLinkELement.click();
 	}
 	
 	public void loginClick() {
-		this.driverManager.driverWait();
+		this.driverManager.driverLongWait();
 		WebElement loginButtonWebElement = driver.findElement(By.xpath(loginButtonLocator));
 		loginButtonWebElement.submit();
 	}

@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default TestSuite" duration-ms="85073" started-at="2017-05-31T15:38:11Z" finished-at="2017-05-31T15:39:36Z">
+  <suite name="Default suite" duration-ms="46820" started-at="2017-05-31T21:49:57Z" finished-at="2017-05-31T21:50:44Z">
     <groups>
     </groups>
-    <test name="Automated Full Regression TestCycle" duration-ms="85073" started-at="2017-05-31T15:38:11Z" finished-at="2017-05-31T15:39:36Z">
+    <test name="Default test" duration-ms="46820" started-at="2017-05-31T21:49:57Z" finished-at="2017-05-31T21:50:44Z">
       <class name="northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases@5702b3b1]" name="beforeTest" is-config="true" duration-ms="27072" started-at="2017-05-31T09:38:11Z" finished-at="2017-05-31T09:38:38Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases@ae45eb6]" name="beforeTest" is-config="true" duration-ms="14030" started-at="2017-05-31T15:49:57Z" finished-at="2017-05-31T15:50:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="test()[pri:0, instance:northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases@5702b3b1]" name="test" duration-ms="57848" started-at="2017-05-31T09:38:38Z" finished-at="2017-05-31T09:39:36Z">
+        <test-method status="PASS" signature="Example1()[pri:1, instance:northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases@ae45eb6]" name="Example1" duration-ms="22390" started-at="2017-05-31T15:50:11Z" finished-at="2017-05-31T15:50:33Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- test -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases@5702b3b1]" name="afterTest" is-config="true" duration-ms="138" started-at="2017-05-31T09:39:36Z" finished-at="2017-05-31T09:39:36Z">
+        </test-method> <!-- Example1 -->
+        <test-method status="PASS" signature="Example2()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases@ae45eb6]" name="Example2" duration-ms="10234" started-at="2017-05-31T15:50:33Z" finished-at="2017-05-31T15:50:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Example2 -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases@ae45eb6]" name="afterTest" is-config="true" duration-ms="147" started-at="2017-05-31T15:50:44Z" finished-at="2017-05-31T15:50:44Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
       </class> <!-- northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases -->
-    </test> <!-- Automated Full Regression TestCycle -->
-  </suite> <!-- Default TestSuite -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>
