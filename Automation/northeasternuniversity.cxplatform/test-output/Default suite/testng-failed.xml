@@ -3,17 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases">
+      <class name="northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases">
         <methods>
-          <include name="NUCP56"/>
-          <include name="NUCP57"/>
-          <include name="NUCP54"/>
-          <include name="NUCP53"/>
-          <include name="beforeTest"/>
-          <include name="NUCP49"/>
           <include name="afterTest"/>
+          <include name="beforeTest"/>
+          <include name="NUCP57"/>
         </methods>
-      </class> <!-- northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases -->
+      </class> <!-- northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

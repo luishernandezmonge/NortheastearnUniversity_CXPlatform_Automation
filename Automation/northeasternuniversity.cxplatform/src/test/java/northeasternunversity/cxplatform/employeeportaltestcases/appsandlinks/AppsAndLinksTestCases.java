@@ -1,4 +1,4 @@
-package northeasternunversity.cxplatform.employeeportaltestcases.userprofile;
+package northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks;
 
 import java.util.List;
 import northeasternuniversity.cxplatform.pages.general.*;
@@ -63,6 +63,7 @@ public class AppsAndLinksTestCases {
 		// Waiting for the web browser, it should loads all the new elements on
 		// the DOM
 		homePage.getDriverManager().driverLongWait();
+		homePage.getDriverManager().driverShortWait();
 		// Verifying if the redirected URL (current) is the expected by user
 		Assert.assertEquals(expectedURLPage, driverManager.getDriver().getCurrentUrl());
 
@@ -91,7 +92,8 @@ public class AppsAndLinksTestCases {
 
 	}
 
-	@Test(priority = 2, dependsOnMethods = { "NUCP49" })
+	//@Test(priority = 2, dependsOnMethods = { "NUCP49" })
+	@Test(priority = 2)
 	public void NUCP53() {
 		// JIRA test case ID & Description for Automated Test Case
 		System.out.println("Test Case NUCP-53:" + "\n"
@@ -120,7 +122,8 @@ public class AppsAndLinksTestCases {
 
 	}
 
-	@Test(priority = 3, dependsOnMethods = { "NUCP53" })
+	//@Test(priority = 3, dependsOnMethods = { "NUCP53" })
+	@Test(priority = 2)
 	public void NUCP54() {
 		// JIRA test case ID & Description for Automated Test Case
 		System.out.println("Test Case NUCP-54:" + "\n"
@@ -154,7 +157,8 @@ public class AppsAndLinksTestCases {
 
 	}
 	
-	@Test(priority = 4, dependsOnMethods = { "NUCP54" })
+	//@Test(priority = 4, dependsOnMethods = { "NUCP54" })
+	@Test(priority = 2)
 	public void NUCP56() {
 		// JIRA test case ID & Description for Automated Test Case
 		System.out.println("Test Case NUCP-56:" + "\n"
@@ -183,7 +187,8 @@ public class AppsAndLinksTestCases {
 
 	}
 
-	@Test(priority = 5, dependsOnMethods = { "NUCP56" })
+	//@Test(priority = 5, dependsOnMethods = { "NUCP56" })
+	@Test(priority = 2)
 	public void NUCP57() {
 		// JIRA test case ID & Description for Automated Test Case
 		System.out.println("Test Case NUCP-57:" + "\n"
@@ -208,6 +213,72 @@ public class AppsAndLinksTestCases {
 					Assert.assertTrue(elementHREF.equalsIgnoreCase(this.expectedURLForJumpToHumanResources));
 				else if (elementText.trim().equalsIgnoreCase("Library"))
 					Assert.assertTrue(elementHREF.equalsIgnoreCase(this.expectedURLForJumpToLibrary));
+				else if (elementText.trim().equalsIgnoreCase("Academic Resources"))
+					Assert.assertTrue(elementHREF.equalsIgnoreCase(this.expectedURLForJumpToAcademicResources));
+				else
+					Assert.assertTrue(false);
+
+			}
+		}
+
+	}
+	
+	//@Test(priority = 6, dependsOnMethods = { "NUCP57" })
+	@Test(priority = 2)
+	public void NUCP173() {
+		// JIRA test case ID & Description for Automated Test Case
+		System.out.println("Test Case NUCP-173:" + "\n"
+				+ "Summary: Verify that the application displays more Library items properly when “See All Others +” link is clicked");
+
+		// Waiting for the web browser, it should loads all the new elements on
+		// the DOM
+		homePage.getDriverManager().driverLongWait();
+		// Verifying if the Element to be clicked is present on the DOM
+		Assert.assertTrue(appsAndLinksPage.isMostRelevantLibraryDivElementPresent());
+		Assert.assertTrue(appsAndLinksPage.isSeeAllOthersLibraryLinkElementPresent());
+		Assert.assertTrue(appsAndLinksPage.hasMostRelevantLibraryLinks());
+
+		if (appsAndLinksPage.hasMostRelevantLibraryLinks()) {
+			int mostRelevantLibraryLinksAmountBeforeClick = this.appsAndLinksPage
+					.getAllElementsOnMostRelevanLibraryLinks().size();
+			appsAndLinksPage.seeAllOthersLibraryLinkClick();
+			appsAndLinksPage.getDriverManager().driverShortWait();
+			int mostRelevantLibraryLinksAmountAfterClick = this.appsAndLinksPage
+					.getAllElementsOnMostRelevanLibraryLinks().size();
+			Assert.assertNotEquals(mostRelevantLibraryLinksAmountBeforeClick,
+					mostRelevantLibraryLinksAmountAfterClick);
+		}
+
+		Assert.assertFalse(appsAndLinksPage.isSeeAllOthersLibraryLinkElementPresent());
+
+	}
+
+	//@Test(priority = 7, dependsOnMethods = { "NUCP173" })
+	@Test(priority = 2)
+	public void NUCP174() {
+		// JIRA test case ID & Description for Automated Test Case
+		System.out.println("Test Case NUCP-174:" + "\n"
+				+ "Summary: Verify that the application redirects to the proper page when a link is clicked on the Library/Related Categories section of Apps&Links page");
+
+		// Waiting for the web browser, it should loads all the new elements on
+		// the DOM
+		homePage.getDriverManager().driverLongWait();
+		// Verifying if the Element to be clicked is present on the DOM
+		Assert.assertTrue(appsAndLinksPage.isRelatedCategoriesLibraryDivElementPresent());
+		Assert.assertTrue(appsAndLinksPage.hasRelatedCategoriesLibraryLinks());
+
+		if (appsAndLinksPage.hasRelatedCategoriesLibraryLinks()) {
+			List<WebElement> relatedCategoriesList = this.appsAndLinksPage
+					.getAllElementsOnRelatedCategoriesLibraryLinks();
+			for (WebElement element : relatedCategoriesList) {
+				String elementText = element.findElement(By.xpath("a")).getText();
+				String elementHREF = element.findElement(By.xpath("a")).getAttribute("href");
+
+				
+				if (elementText.trim().equalsIgnoreCase("Human Resources"))
+					Assert.assertTrue(elementHREF.equalsIgnoreCase(this.expectedURLForJumpToHumanResources));
+				else if (elementText.trim().equalsIgnoreCase("Benefits"))
+					Assert.assertTrue(elementHREF.equalsIgnoreCase(this.expectedURLForJumpToBenefits));
 				else if (elementText.trim().equalsIgnoreCase("Academic Resources"))
 					Assert.assertTrue(elementHREF.equalsIgnoreCase(this.expectedURLForJumpToAcademicResources));
 				else

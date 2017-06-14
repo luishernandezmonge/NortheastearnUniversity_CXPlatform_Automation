@@ -1,4 +1,4 @@
-package northeasternunversity.cxplatform.employeeportaltestcases.userprofile;
+package northeasternunversity.cxplatform.employeeportaltestcases.rightpanel;
 
 import java.util.LinkedList;
 import northeasternuniversity.cxplatform.pages.general.*;
@@ -11,7 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
-public class RighPanelTestCases {
+public class QuickLinkAndRecentLinkTestCases {
 
 	LoginPage loginPage;
 	HomePage homePage;
@@ -56,6 +56,7 @@ public class RighPanelTestCases {
 		// Waiting for the web browser, it should loads all the new elements on
 		// the DOM
 		homePage.getDriverManager().driverLongWait();
+		homePage.getDriverManager().driverShortWait();
 		// Verifying if the redirected URL (current) is the expected by user
 		Assert.assertEquals(expectedURLPage, driverManager.getDriver().getCurrentUrl());
 

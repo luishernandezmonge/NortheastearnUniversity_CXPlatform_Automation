@@ -5,9 +5,9 @@
 		parallel="false">
 		<classes>
 			<class
-				name="northeasternunversity.cxplatform.employeeportaltestcases.userprofile.RighPanelTestCases" />
+				name="northeasternunversity.cxplatform.employeeportaltestcases.rightpanel.QuickLinkAndRecentLinkTestCases" />
 			<class
-				name="northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases" />
+				name="northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

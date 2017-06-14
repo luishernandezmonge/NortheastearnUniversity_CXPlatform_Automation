@@ -42,6 +42,11 @@ public class AppsAndLinksPage {
 	private String mostRelevantBenefitsLinksLocator;
 	private String relatedCategoriesBenefitsDivLocator;
 	private String relatedCategoriesBenefitsLinksLocator;
+	private String seeAllOtherLibraryLinkLocator;
+	private String mostRelevantLibraryDivLocator;
+	private String mostRelevantLibraryLinksLocator;
+	private String relatedCategoriesLibraryDivLocator;
+	private String relatedCategoriesLibraryLinksLocator;
 
 	/**
 	 * 
@@ -86,6 +91,16 @@ public class AppsAndLinksPage {
 				.getProperty("northeastern.edu.appsandlinkspage.relatedCategoriesbenefitslistcontainer");
 		relatedCategoriesBenefitsLinksLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.appsandlinkspage.relatedCategoriesbenefitslinks");
+		seeAllOtherLibraryLinkLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.seeallothersonlibrary");
+		mostRelevantLibraryDivLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.mostrelevanlibrarylistcontainer");
+		mostRelevantLibraryLinksLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.mostrelevanlibrarylinks");
+		relatedCategoriesLibraryDivLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.relatedCategorieslibrarylistcontainer");
+		relatedCategoriesLibraryLinksLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.relatedCategorieslibrarylinks");
 
 	}
 
@@ -204,6 +219,50 @@ public class AppsAndLinksPage {
 			return false;
 	}
 
+	public Boolean isMostRelevantLibraryDivElementPresent() {
+		return this.isElementPresent(mostRelevantLibraryDivLocator);
+	}
+
+	public Boolean isRelatedCategoriesLibraryDivElementPresent() {
+		return this.isElementPresent(relatedCategoriesLibraryDivLocator);
+	}
+
+	public Boolean isSeeAllOthersLibraryLinkElementPresent() {
+		return this.isElementPresent(seeAllOtherLibraryLinkLocator);
+	}
+
+	public void seeAllOthersLibraryLinkClick() {
+		WebElement seeAllOthersLibraryLinkElement = driverManager.getDriver()
+				.findElement(By.xpath(seeAllOtherLibraryLinkLocator));
+		if (seeAllOthersLibraryLinkElement.isDisplayed())
+			seeAllOthersLibraryLinkElement.click();
+	}
+
+	public Boolean hasMostRelevantLibraryLinks() {
+		int mostRelevantLibraryLinksSize = this.driverManager.getDriver()
+				.findElements(By.xpath(mostRelevantLibraryLinksLocator)).size();
+		if (isMostRelevantLibraryDivElementPresent()) {
+			if (mostRelevantLibraryLinksSize > 0)
+				return true;
+			else
+				return false;
+		} else
+			return false;
+
+	}
+
+	public Boolean hasRelatedCategoriesLibraryLinks() {
+		int relatedCategoriesLibraryLinksSize = this.driverManager.getDriver()
+				.findElements(By.xpath(relatedCategoriesLibraryLinksLocator)).size();
+		if (isRelatedCategoriesBenefitsDivElementPresent()) {
+			if (relatedCategoriesLibraryLinksSize > 0)
+				return true;
+			else
+				return false;
+		} else
+			return false;
+	}
+
 	public Boolean hasRecentLinks() {
 		int recentlinksListSize = this.driverManager.getDriver().findElements(By.xpath(recentLinksListLocator)).size();
 		if (isRecentLinksListULElementPresent()) {
@@ -266,6 +325,20 @@ public class AppsAndLinksPage {
 		listOfMostRelevantBenefitsList = this.driverManager.getDriver()
 				.findElements(By.xpath(mostRelevantBenefitsLinksLocator));
 		return listOfMostRelevantBenefitsList;
+	}
+
+	public List<WebElement> getAllElementsOnRelatedCategoriesLibraryLinks() {
+		List<WebElement> listOfRelatedCategoriesLibraryList;
+		listOfRelatedCategoriesLibraryList = this.driverManager.getDriver()
+				.findElements(By.xpath(relatedCategoriesLibraryLinksLocator));
+		return listOfRelatedCategoriesLibraryList;
+	}
+
+	public List<WebElement> getAllElementsOnMostRelevanLibraryLinks() {
+		List<WebElement> listOfMostRelevantLibraryList;
+		listOfMostRelevantLibraryList = this.driverManager.getDriver()
+				.findElements(By.xpath(mostRelevantLibraryLinksLocator));
+		return listOfMostRelevantLibraryList;
 	}
 
 	public List<WebElement> getAllElementsOnAppsPortletList() {
