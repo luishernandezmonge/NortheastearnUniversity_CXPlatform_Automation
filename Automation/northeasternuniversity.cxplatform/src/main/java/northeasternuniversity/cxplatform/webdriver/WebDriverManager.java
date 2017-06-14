@@ -9,9 +9,8 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import northeasternuniversity.cxplatform.constants.ConstantsPropertiesManager;
 import northeasternuniversity.cxplatform.constants.FilesLocations;
-
 import java.awt.Toolkit;
-import java.util.concurrent.TimeUnit;
+
 
 public class WebDriverManager {
 
@@ -75,7 +74,6 @@ public class WebDriverManager {
 	public void driverShortWait() {
 		long wait = Long
 				.parseLong(constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultShortWaitTime"));
-		this.driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
 		try {
 			Thread.sleep(wait);
 		} catch (InterruptedException ie1) {
@@ -86,7 +84,6 @@ public class WebDriverManager {
 	public void driverLongWait() {
 		long wait = Long
 				.parseLong(constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultLongWaitTime"));
-		this.driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
 		try {
 			Thread.sleep(wait);
 		} catch (InterruptedException ie1) {

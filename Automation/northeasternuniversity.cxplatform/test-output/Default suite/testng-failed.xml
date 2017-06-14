@@ -5,10 +5,13 @@
     <classes>
       <class name="northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases">
         <methods>
+          <include name="NUCP56"/>
+          <include name="NUCP57"/>
+          <include name="NUCP54"/>
+          <include name="NUCP53"/>
           <include name="beforeTest"/>
-          <include name="Example1"/>
+          <include name="NUCP49"/>
           <include name="afterTest"/>
-          <include name="Example2"/>
         </methods>
       </class> <!-- northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases -->
     </classes>

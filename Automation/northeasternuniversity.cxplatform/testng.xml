@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Default TestSuite">
-  <test name="Automated Full Regression TestCycle" preserve-order="false">
-    <classes>
-      <class name="northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases"/>
-    </classes>
-  </test> <!-- Test -->
+	<test name="Automated Full Regression TestCycle" preserve-order="false"
+		parallel="false">
+		<classes>
+			<class
+				name="northeasternunversity.cxplatform.employeeportaltestcases.userprofile.RighPanelTestCases" />
+			<class
+				name="northeasternunversity.cxplatform.employeeportaltestcases.userprofile.AppsAndLinksTestCases" />
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->

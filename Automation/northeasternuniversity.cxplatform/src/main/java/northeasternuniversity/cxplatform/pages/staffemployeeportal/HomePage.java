@@ -3,6 +3,8 @@
  */
 package northeasternuniversity.cxplatform.pages.staffemployeeportal;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -44,7 +46,10 @@ public class HomePage {
 		boolean isElementPresent = true;
 
 		try {
+			
+			this.driverManager.getDriver().manage().timeouts().implicitlyWait(2200,  TimeUnit.MILLISECONDS);
 			@SuppressWarnings("unused")
+			
 			WebElement webElement = driverManager.getDriver().findElement(By.xpath(path));
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
