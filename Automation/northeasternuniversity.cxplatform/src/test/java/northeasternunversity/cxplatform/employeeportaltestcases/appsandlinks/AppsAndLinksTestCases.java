@@ -36,6 +36,8 @@ public class AppsAndLinksTestCases {
 	String expectedURLForJumpToHumanResources;
 	String expectedURLForJumpToAcademicResources;
 	String expectedURLForJumpToBenefits;
+	String expectedDataForHeroTitle;
+	String expectedDataForHeroText;
 
 	@BeforeTest
 	public void beforeTest() {
@@ -74,6 +76,10 @@ public class AppsAndLinksTestCases {
 		this.expectedURLForJumpToAcademicResources = dataSourceManager.getDataValue(1);
 		this.dataSourceManager.setTestDataRow(5);
 		this.expectedURLForJumpToBenefits = dataSourceManager.getDataValue(1);
+		this.dataSourceManager.setTestDataRow(12);
+		this.expectedDataForHeroTitle = dataSourceManager.getDataValue(1);
+		this.dataSourceManager.setTestDataRow(13);
+		this.expectedDataForHeroText = dataSourceManager.getDataValue(1);
 
 		dataSourceManager.closeIO();
 	}
@@ -327,7 +333,7 @@ public class AppsAndLinksTestCases {
 
 	}
 
-	// @Test(priority = 6, dependsOnMethods = { "NUCP57" })
+	// @Test(priority = 6, dependsOnMethods = { "NUCP174" })
 	@Test(priority = 2)
 	public void NUCP178() {
 		// JIRA test case ID & Description for Automated Test Case
@@ -356,7 +362,7 @@ public class AppsAndLinksTestCases {
 
 	}
 
-	// @Test(priority = 7, dependsOnMethods = { "NUCP173" })
+	// @Test(priority = 7, dependsOnMethods = { "NUCP178" })
 	@Test(priority = 2)
 	public void NUCP179() {
 		// JIRA test case ID & Description for Automated Test Case
@@ -389,6 +395,24 @@ public class AppsAndLinksTestCases {
 			}
 		}
 
+	}
+	
+	// @Test(priority = 8, dependsOnMethods = { "NUCP179" })
+	@Test(priority = 2)
+	public void NUCP59() {
+		// JIRA test case ID & Description for Automated Test Case
+		System.out.println("Test Case NUCP-59:" + "\n"
+				+ "Summary: Verify that the application displays the proper hero page data according with configured for Apps&Links page");
+
+		// Waiting for the web browser, it should loads all the new elements on
+		// the DOM
+		homePage.getDriverManager().driverLongWait();
+		// Verifying if the Element to be clicked is present on the DOM
+		Assert.assertTrue(appsAndLinksPage.isHeroTitleElementPresent());
+		Assert.assertTrue(appsAndLinksPage.isHeroTextElementPresent()); 
+		
+		Assert.assertTrue(appsAndLinksPage.isTheCorrectDataForHeroTitle(expectedDataForHeroTitle));
+		Assert.assertTrue(appsAndLinksPage.isTheCorrectDataForHeroText(expectedDataForHeroText));
 	}
 
 	@AfterTest

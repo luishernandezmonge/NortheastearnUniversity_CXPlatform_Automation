@@ -8,6 +8,10 @@
 				name="northeasternunversity.cxplatform.employeeportaltestcases.rightpanel.QuickLinkAndRecentLinkTestCases" />
 			<class
 				name="northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases" />
+			<class
+				name="northeasternunversity.cxplatform.employeeportaltestcases.footer.FooterTestCases" />
+				<class
+				name="northeasternunversity.cxplatform.employeeportaltestcases.landingpage.LandingPageTestCases" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

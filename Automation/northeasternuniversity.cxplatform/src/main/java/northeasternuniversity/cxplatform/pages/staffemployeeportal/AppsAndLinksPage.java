@@ -52,6 +52,8 @@ public class AppsAndLinksPage {
 	private String mostRelevantAcademicResourcesLinksLocator;
 	private String relatedCategoriesAcademicResourcesDivLocator;
 	private String relatedCategoriesAcademicResourcesLinksLocator;
+	private String heroTextLocator;
+	private String heroTitleLocator;
 
 	/**
 	 * 
@@ -116,14 +118,17 @@ public class AppsAndLinksPage {
 				.getProperty("northeastern.edu.appsandlinkspage.relatedCategoriesacademicresourceslistcontainer");
 		relatedCategoriesAcademicResourcesLinksLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.appsandlinkspage.relatedCategoriesacademicresourceslinks");
-
+		heroTextLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.herotext");
+		heroTitleLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.herotitle");
 	}
 
 	public boolean isElementPresent(String path) {
 		boolean isElementPresent = true;
 
 		try {
-			this.driverManager.getDriver().manage().timeouts().implicitlyWait(2200, TimeUnit.MILLISECONDS);
+			this.driverManager.getDriver().manage().timeouts().implicitlyWait(1200, TimeUnit.MILLISECONDS);
 			@SuppressWarnings("unused")
 			WebElement webElement = this.driverManager.getDriver().findElement(By.xpath(path));
 
@@ -156,6 +161,46 @@ public class AppsAndLinksPage {
 
 	public Boolean isSeeAllOthersHumanResourcesLinkElementPresent() {
 		return this.isElementPresent(seeAllOtherHumanResourcesLinkLocator);
+	}
+
+	public boolean isHeroTextElementPresent() {
+		return this.isElementPresent(heroTextLocator);
+	}
+
+	public boolean isHeroTitleElementPresent() {
+		return this.isElementPresent(heroTitleLocator);
+	}
+
+	public Boolean isTheCorrectData(String expectedData, WebElement elementToVerify) {
+		Boolean result = false;
+
+		if (elementToVerify.getText().equalsIgnoreCase(expectedData))
+			result = true;
+
+		return result;
+	}
+
+	public Boolean isTheCorrectDataForHeroTitle(String expectedData) {
+		Boolean result = false;
+		if (isHeroTitleElementPresent()) {
+			WebElement heroTitleElement = driverManager.getDriver().findElement(By.xpath(heroTitleLocator));
+
+			if (isTheCorrectData(expectedData, heroTitleElement))
+				result = true;
+		}
+
+		return result;
+	}
+
+	public Boolean isTheCorrectDataForHeroText(String expectedData) {
+		Boolean result = false;
+		if (isHeroTextElementPresent()) {
+			WebElement heroTextElement = driverManager.getDriver().findElement(By.xpath(heroTextLocator));
+			if (isTheCorrectData(expectedData, heroTextElement))
+				result = true;
+		}
+
+		return result;
 	}
 
 	public void seeAllOthersHumanResourcesLinkClick() {
@@ -399,6 +444,7 @@ public class AppsAndLinksPage {
 				.findElements(By.xpath(mostRelevantLibraryLinksLocator));
 		return listOfMostRelevantLibraryList;
 	}
+
 	public List<WebElement> getAllElementsOnRelatedCategoriesAcademicResourcesLinks() {
 		List<WebElement> listOfRelatedCategoriesAcademicResourcesList;
 		listOfRelatedCategoriesAcademicResourcesList = this.driverManager.getDriver()
