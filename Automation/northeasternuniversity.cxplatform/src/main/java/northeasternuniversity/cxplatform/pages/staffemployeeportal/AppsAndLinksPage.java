@@ -47,6 +47,11 @@ public class AppsAndLinksPage {
 	private String mostRelevantLibraryLinksLocator;
 	private String relatedCategoriesLibraryDivLocator;
 	private String relatedCategoriesLibraryLinksLocator;
+	private String seeAllOtherAcademicResourcesLinkLocator;
+	private String mostRelevantAcademicResourcesDivLocator;
+	private String mostRelevantAcademicResourcesLinksLocator;
+	private String relatedCategoriesAcademicResourcesDivLocator;
+	private String relatedCategoriesAcademicResourcesLinksLocator;
 
 	/**
 	 * 
@@ -101,6 +106,16 @@ public class AppsAndLinksPage {
 				.getProperty("northeastern.edu.appsandlinkspage.relatedCategorieslibrarylistcontainer");
 		relatedCategoriesLibraryLinksLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.appsandlinkspage.relatedCategorieslibrarylinks");
+		seeAllOtherAcademicResourcesLinkLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.seeallothersonacademicresources");
+		mostRelevantAcademicResourcesDivLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.mostrelevanacademicresourceslistcontainer");
+		mostRelevantAcademicResourcesLinksLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.mostrelevanacademicresourceslinks");
+		relatedCategoriesAcademicResourcesDivLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.relatedCategoriesacademicresourceslistcontainer");
+		relatedCategoriesAcademicResourcesLinksLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.relatedCategoriesacademicresourceslinks");
 
 	}
 
@@ -254,8 +269,52 @@ public class AppsAndLinksPage {
 	public Boolean hasRelatedCategoriesLibraryLinks() {
 		int relatedCategoriesLibraryLinksSize = this.driverManager.getDriver()
 				.findElements(By.xpath(relatedCategoriesLibraryLinksLocator)).size();
-		if (isRelatedCategoriesBenefitsDivElementPresent()) {
+		if (isRelatedCategoriesLibraryDivElementPresent()) {
 			if (relatedCategoriesLibraryLinksSize > 0)
+				return true;
+			else
+				return false;
+		} else
+			return false;
+	}
+
+	public Boolean isMostRelevantAcademicResourcesDivElementPresent() {
+		return this.isElementPresent(mostRelevantAcademicResourcesDivLocator);
+	}
+
+	public Boolean isRelatedCategoriesAcademicResourcesDivElementPresent() {
+		return this.isElementPresent(relatedCategoriesAcademicResourcesDivLocator);
+	}
+
+	public Boolean isSeeAllOthersAcademicResourcesLinkElementPresent() {
+		return this.isElementPresent(seeAllOtherAcademicResourcesLinkLocator);
+	}
+
+	public void seeAllOthersAcademicResourcesLinkClick() {
+		WebElement seeAllOthersAcademicResourcesLinkElement = driverManager.getDriver()
+				.findElement(By.xpath(seeAllOtherAcademicResourcesLinkLocator));
+		if (seeAllOthersAcademicResourcesLinkElement.isDisplayed())
+			seeAllOthersAcademicResourcesLinkElement.click();
+	}
+
+	public Boolean hasMostRelevantAcademicResourcesLinks() {
+		int mostRelevantAcademicResourcesLinksSize = this.driverManager.getDriver()
+				.findElements(By.xpath(mostRelevantLibraryLinksLocator)).size();
+		if (isMostRelevantAcademicResourcesDivElementPresent()) {
+			if (mostRelevantAcademicResourcesLinksSize > 0)
+				return true;
+			else
+				return false;
+		} else
+			return false;
+
+	}
+
+	public Boolean hasRelatedCategoriesAcademicResourcesLinks() {
+		int relatedCategoriesAcademicResourcesLinksSize = this.driverManager.getDriver()
+				.findElements(By.xpath(relatedCategoriesLibraryLinksLocator)).size();
+		if (isRelatedCategoriesAcademicResourcesDivElementPresent()) {
+			if (relatedCategoriesAcademicResourcesLinksSize > 0)
 				return true;
 			else
 				return false;
@@ -339,6 +398,19 @@ public class AppsAndLinksPage {
 		listOfMostRelevantLibraryList = this.driverManager.getDriver()
 				.findElements(By.xpath(mostRelevantLibraryLinksLocator));
 		return listOfMostRelevantLibraryList;
+	}
+	public List<WebElement> getAllElementsOnRelatedCategoriesAcademicResourcesLinks() {
+		List<WebElement> listOfRelatedCategoriesAcademicResourcesList;
+		listOfRelatedCategoriesAcademicResourcesList = this.driverManager.getDriver()
+				.findElements(By.xpath(relatedCategoriesAcademicResourcesLinksLocator));
+		return listOfRelatedCategoriesAcademicResourcesList;
+	}
+
+	public List<WebElement> getAllElementsOnMostRelevanAcademicResourcesLinks() {
+		List<WebElement> listOfMostRelevantAcademicResourcesList;
+		listOfMostRelevantAcademicResourcesList = this.driverManager.getDriver()
+				.findElements(By.xpath(mostRelevantAcademicResourcesLinksLocator));
+		return listOfMostRelevantAcademicResourcesList;
 	}
 
 	public List<WebElement> getAllElementsOnAppsPortletList() {

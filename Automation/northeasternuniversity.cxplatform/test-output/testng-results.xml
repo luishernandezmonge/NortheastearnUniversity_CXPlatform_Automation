@@ -1,41 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="7" passed="6">
+<testng-results skipped="0" failed="1" ignored="0" total="9" passed="8">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="151255" started-at="2017-06-14T20:04:41Z" finished-at="2017-06-14T20:07:12Z">
+  <suite name="Default suite" duration-ms="232105" started-at="2017-06-14T21:19:32Z" finished-at="2017-06-14T21:23:24Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="151255" started-at="2017-06-14T20:04:41Z" finished-at="2017-06-14T20:07:12Z">
+    <test name="Default test" duration-ms="232105" started-at="2017-06-14T21:19:32Z" finished-at="2017-06-14T21:23:24Z">
       <class name="northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@ae45eb6]" name="beforeTest" is-config="true" duration-ms="40264" started-at="2017-06-14T14:04:41Z" finished-at="2017-06-14T14:05:21Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@59f99ea]" name="beforeTest" is-config="true" duration-ms="59565" started-at="2017-06-14T15:19:32Z" finished-at="2017-06-14T15:20:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="NUCP49()[pri:1, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@ae45eb6]" name="NUCP49" duration-ms="72213" started-at="2017-06-14T14:05:21Z" finished-at="2017-06-14T14:06:33Z">
+        <test-method status="PASS" signature="NUCP49()[pri:1, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@59f99ea]" name="NUCP49" duration-ms="120873" started-at="2017-06-14T15:20:31Z" finished-at="2017-06-14T15:22:32Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- NUCP49 -->
-        <test-method status="PASS" signature="NUCP173()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@ae45eb6]" name="NUCP173" duration-ms="8570" started-at="2017-06-14T14:06:33Z" finished-at="2017-06-14T14:06:42Z">
+        <test-method status="PASS" signature="NUCP173()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@59f99ea]" name="NUCP173" duration-ms="8562" started-at="2017-06-14T15:22:32Z" finished-at="2017-06-14T15:22:41Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- NUCP173 -->
-        <test-method status="PASS" signature="NUCP174()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@ae45eb6]" name="NUCP174" duration-ms="4337" started-at="2017-06-14T14:06:42Z" finished-at="2017-06-14T14:06:46Z">
+        <test-method status="PASS" signature="NUCP174()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@59f99ea]" name="NUCP174" duration-ms="4361" started-at="2017-06-14T15:22:41Z" finished-at="2017-06-14T15:22:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- NUCP174 -->
-        <test-method status="PASS" signature="NUCP53()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@ae45eb6]" name="NUCP53" duration-ms="8550" started-at="2017-06-14T14:06:46Z" finished-at="2017-06-14T14:06:55Z">
+        <test-method status="PASS" signature="NUCP178()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@59f99ea]" name="NUCP178" duration-ms="8518" started-at="2017-06-14T15:22:45Z" finished-at="2017-06-14T15:22:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- NUCP178 -->
+        <test-method status="PASS" signature="NUCP179()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@59f99ea]" name="NUCP179" duration-ms="4356" started-at="2017-06-14T15:22:54Z" finished-at="2017-06-14T15:22:58Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- NUCP179 -->
+        <test-method status="PASS" signature="NUCP53()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@59f99ea]" name="NUCP53" duration-ms="8545" started-at="2017-06-14T15:22:58Z" finished-at="2017-06-14T15:23:06Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- NUCP53 -->
-        <test-method status="PASS" signature="NUCP54()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@ae45eb6]" name="NUCP54" duration-ms="4328" started-at="2017-06-14T14:06:55Z" finished-at="2017-06-14T14:06:59Z">
+        <test-method status="PASS" signature="NUCP54()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@59f99ea]" name="NUCP54" duration-ms="4329" started-at="2017-06-14T15:23:06Z" finished-at="2017-06-14T15:23:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- NUCP54 -->
-        <test-method status="PASS" signature="NUCP56()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@ae45eb6]" name="NUCP56" duration-ms="8514" started-at="2017-06-14T14:06:59Z" finished-at="2017-06-14T14:07:08Z">
+        <test-method status="PASS" signature="NUCP56()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@59f99ea]" name="NUCP56" duration-ms="8509" started-at="2017-06-14T15:23:11Z" finished-at="2017-06-14T15:23:19Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- NUCP56 -->
-        <test-method status="FAIL" signature="NUCP57()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@ae45eb6]" name="NUCP57" duration-ms="4313" started-at="2017-06-14T14:07:08Z" finished-at="2017-06-14T14:07:12Z">
+        <test-method status="FAIL" signature="NUCP57()[pri:2, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@59f99ea]" name="NUCP57" duration-ms="4318" started-at="2017-06-14T15:23:19Z" finished-at="2017-06-14T15:23:24Z">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -46,7 +54,7 @@
 	at org.testng.Assert.failNotEquals(Assert.java:512)
 	at org.testng.Assert.assertTrue(Assert.java:41)
 	at org.testng.Assert.assertTrue(Assert.java:51)
-	at northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases.NUCP57(AppsAndLinksTestCases.java:219)
+	at northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases.NUCP57(AppsAndLinksTestCases.java:259)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -78,7 +86,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- NUCP57 -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@ae45eb6]" name="afterTest" is-config="true" duration-ms="139" started-at="2017-06-14T14:07:12Z" finished-at="2017-06-14T14:07:12Z">
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases@59f99ea]" name="afterTest" is-config="true" duration-ms="138" started-at="2017-06-14T15:23:24Z" finished-at="2017-06-14T15:23:24Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
