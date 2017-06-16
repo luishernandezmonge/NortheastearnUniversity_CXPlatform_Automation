@@ -12,6 +12,10 @@
 				name="northeasternunversity.cxplatform.employeeportaltestcases.footer.FooterTestCases" />
 				<class
 				name="northeasternunversity.cxplatform.employeeportaltestcases.landingpage.LandingPageTestCases" />
+				<class
+				name="northeasternunversity.cxplatform.employeeportaltestcases.dashboard.MyAppsTestCases" />
+				<class
+				name="northeasternunversity.cxplatform.employeeportaltestcases.dashboard.LatestNewsTestCases" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

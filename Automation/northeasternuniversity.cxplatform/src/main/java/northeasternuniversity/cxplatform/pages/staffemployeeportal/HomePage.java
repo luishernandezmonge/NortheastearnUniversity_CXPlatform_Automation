@@ -31,6 +31,12 @@ public class HomePage {
 	private String directoryFooterLinkLocator;
 	private String communityFooterLinkLocator;
 	private String copyrightFooterLocator;
+	private String appsPortletAddAppLinkLocator;
+	private String addAppModalLocator;
+	private String addAppModalCloseLocator;
+	private String appsPortletLocator;
+	private String latestNewsPortletLocator;
+	private String latestNewsViewAllLinkLocator;
 
 	/**
 	 * 
@@ -57,6 +63,18 @@ public class HomePage {
 				.getProperty("northeastern.edu.homepage.footer.comunitylink");
 		copyrightFooterLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.homepage.footer.copyright");
+		appsPortletAddAppLinkLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.appsaddlink");
+		addAppModalLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.addtomyapps.modaltitle");
+		addAppModalCloseLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.addtomyapps.modalxbutton");
+		appsPortletLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.appsportlet");
+		latestNewsViewAllLinkLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.latestnews.vewAllNewsLink");
+		latestNewsPortletLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.latestnewsportlet");
 
 	}
 
@@ -78,6 +96,36 @@ public class HomePage {
 
 	public Boolean isAppsAndLinksLinkElementPresent() {
 		return this.isElementPresent(appsAndLinksLocator);
+	}
+	
+	public Boolean isAddNewAppLinkElementPresent() {
+		return this.isElementPresent(appsPortletAddAppLinkLocator);
+	}
+	
+	public Boolean isViewNewsPageLinkPresent() {
+		return this.isElementPresent(latestNewsViewAllLinkLocator);
+	}
+	
+	public Boolean isMyAppsPortletPresent() {
+		return this.isElementPresent(appsPortletLocator);
+	}
+	
+	public Boolean isLatestNewsPortletPresent() {
+		return this.isElementPresent(latestNewsPortletLocator);
+	}
+	
+	public Boolean isAddAppModalDisplayedAndPresent(){
+		Boolean result=false;
+		if (isElementPresent(addAppModalLocator)){
+			WebElement element = driverManager.getDriver().findElement(By.xpath(addAppModalLocator));
+			if (element.isDisplayed())
+				result=true;
+		}
+		
+		return result;
+	}
+	public Boolean isAddAppModalClosePresent(){
+		return this.isElementPresent(addAppModalCloseLocator);
 	}
 
 	public Boolean isHomeFooterLinkElementPresent() {
@@ -174,12 +222,40 @@ public class HomePage {
 		return result;
 	}
 
+	public boolean hyperLinkHasTargetBlankAttribute(WebElement elementToValidate) {
+		boolean result = false;
+
+		if (elementToValidate.getAttribute("target").equalsIgnoreCase("_blank"))
+			result = true;
+
+		return result;
+
+	}
+	
 	public void appsAndLinksTabClick() {
 		WebElement appsAndLinksLinkWebElement = driverManager.getDriver().findElement(By.xpath(appsAndLinksLocator));
 		if (appsAndLinksLinkWebElement.isDisplayed())
 			appsAndLinksLinkWebElement.click();
 	}
 
+	public void addNewAppLinkClick() {
+		WebElement addNewAppLinkElement = driverManager.getDriver().findElement(By.xpath(appsPortletAddAppLinkLocator));
+		if (addNewAppLinkElement.isDisplayed())
+			addNewAppLinkElement.click();
+	}
+	
+	public void viewNewsPageLinkClick() {
+		WebElement viewNewsPageLinkElement = driverManager.getDriver().findElement(By.xpath(latestNewsViewAllLinkLocator));
+		if (viewNewsPageLinkElement.isDisplayed())
+			viewNewsPageLinkElement.click();
+	}
+	
+	public void addAppModalCloseLinkClick() {
+		WebElement addAppModalCloseLinkElement = driverManager.getDriver().findElement(By.xpath(addAppModalCloseLocator));
+		if (addAppModalCloseLinkElement.isDisplayed())
+			addAppModalCloseLinkElement.click();
+	}
+	
 	public void goToHomePage() {
 		this.driver.get(
 				constantsPropertiesManager.getSharedExecutionConstants().getProperty("northeastern.edu_homepageurl"));
@@ -199,6 +275,10 @@ public class HomePage {
 
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
+	}
+
+	public WebElement getViewAllNewsPageElement() {	
+		return driverManager.getDriver().findElement(By.xpath(latestNewsViewAllLinkLocator));
 	}
 
 }
