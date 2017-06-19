@@ -7,14 +7,16 @@
 			<class
 				name="northeasternunversity.cxplatform.employeeportaltestcases.rightpanel.QuickLinkAndRecentLinkTestCases" />
 			<class
+				name="northeasternunversity.cxplatform.employeeportaltestcases.rightpanel.ProfileManagementTestCases" />
+			<class
 				name="northeasternunversity.cxplatform.employeeportaltestcases.appsandlinks.AppsAndLinksTestCases" />
 			<class
 				name="northeasternunversity.cxplatform.employeeportaltestcases.footer.FooterTestCases" />
-				<class
+			<class
 				name="northeasternunversity.cxplatform.employeeportaltestcases.landingpage.LandingPageTestCases" />
-				<class
+			<class
 				name="northeasternunversity.cxplatform.employeeportaltestcases.dashboard.MyAppsTestCases" />
-				<class
+			<class
 				name="northeasternunversity.cxplatform.employeeportaltestcases.dashboard.LatestNewsTestCases" />
 		</classes>
 	</test> <!-- Test -->

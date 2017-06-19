@@ -5,12 +5,13 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import northeasternuniversity.cxplatform.constants.ConstantsPropertiesManager;
 import northeasternuniversity.cxplatform.constants.FilesLocations;
 import java.awt.Toolkit;
-
 
 public class WebDriverManager {
 
@@ -38,7 +39,20 @@ public class WebDriverManager {
 
 		else if (webBrowserProperty.equalsIgnoreCase("Safari"))
 			driver = new SafariDriver();
-		else {
+
+		else if (webBrowserProperty.equalsIgnoreCase("IE")) {
+			DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+			if (constantsPropertiesManager.getSharedExecutionConstants().getProperty("BitsVersionForIE")
+					.equalsIgnoreCase("32"))
+				System.setProperty("webdriver.ie.driver",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("IEexec32"));
+			else
+				System.setProperty("webdriver.ie.driver",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("IEexec64"));
+
+			driver = new InternetExplorerDriver();
+		} else {
 			// if not recognized web browser, it run by default with Firefox
 			driver = new FirefoxDriver();
 		}
@@ -72,15 +86,15 @@ public class WebDriverManager {
 	}
 
 	public void driverShortWait() {
-		long wait = Long
-				.parseLong(constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultShortWaitTime"));
+		long wait = Long.parseLong(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultShortWaitTime"));
 		try {
 			Thread.sleep(wait);
 		} catch (InterruptedException ie1) {
 			ie1.printStackTrace();
 		}
 	}
-	
+
 	public void driverLongWait() {
 		long wait = Long
 				.parseLong(constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultLongWaitTime"));

@@ -3,6 +3,7 @@
  */
 package northeasternuniversity.cxplatform.pages.staffemployeeportal;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -37,7 +38,8 @@ public class HomePage {
 	private String appsPortletLocator;
 	private String latestNewsPortletLocator;
 	private String latestNewsViewAllLinkLocator;
-
+	private String latestNewsDivsListItemsLocator;
+	private String latestNewsDivContainerLocator;
 	/**
 	 * 
 	 */
@@ -75,7 +77,10 @@ public class HomePage {
 				.getProperty("northeastern.edu.dashboardpage.latestnews.vewAllNewsLink");
 		latestNewsPortletLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.dashboardpage.latestnewsportlet");
-
+		latestNewsDivsListItemsLocator=  uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.latestnewsdivlistitems");
+		latestNewsDivContainerLocator=  uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.latestnewsdivcontainer");
 	}
 
 	public boolean isElementPresent(String path) {
@@ -97,34 +102,56 @@ public class HomePage {
 	public Boolean isAppsAndLinksLinkElementPresent() {
 		return this.isElementPresent(appsAndLinksLocator);
 	}
-	
+
 	public Boolean isAddNewAppLinkElementPresent() {
 		return this.isElementPresent(appsPortletAddAppLinkLocator);
 	}
-	
+
 	public Boolean isViewNewsPageLinkPresent() {
 		return this.isElementPresent(latestNewsViewAllLinkLocator);
 	}
-	
+
 	public Boolean isMyAppsPortletPresent() {
 		return this.isElementPresent(appsPortletLocator);
 	}
-	
+
 	public Boolean isLatestNewsPortletPresent() {
 		return this.isElementPresent(latestNewsPortletLocator);
 	}
+
+	public Boolean isLatestNewsPortletDivContainerPresent() {
+		return this.isElementPresent(latestNewsDivContainerLocator);
+	}
+	public Boolean hasLastesNewsLinks() {
+		int latestNewsLinksSize = this.driverManager.getDriver()
+				.findElements(By.xpath(latestNewsDivsListItemsLocator)).size();
+		if (isLatestNewsPortletDivContainerPresent()) {
+			if (latestNewsLinksSize > 0)
+				return true;
+			else
+				return false;
+		} else
+			return false;
+	}
 	
-	public Boolean isAddAppModalDisplayedAndPresent(){
-		Boolean result=false;
-		if (isElementPresent(addAppModalLocator)){
+	public List<WebElement> getAllElementsOnLatestNewsPortlet() {
+		List<WebElement> listOfLatestNews;
+		listOfLatestNews = this.driverManager.getDriver().findElements(By.xpath(latestNewsDivsListItemsLocator));
+		return listOfLatestNews;
+	}
+
+	public Boolean isAddAppModalDisplayedAndPresent() {
+		Boolean result = false;
+		if (isElementPresent(addAppModalLocator)) {
 			WebElement element = driverManager.getDriver().findElement(By.xpath(addAppModalLocator));
 			if (element.isDisplayed())
-				result=true;
+				result = true;
 		}
-		
+
 		return result;
 	}
-	public Boolean isAddAppModalClosePresent(){
+
+	public Boolean isAddAppModalClosePresent() {
 		return this.isElementPresent(addAppModalCloseLocator);
 	}
 
@@ -231,7 +258,7 @@ public class HomePage {
 		return result;
 
 	}
-	
+
 	public void appsAndLinksTabClick() {
 		WebElement appsAndLinksLinkWebElement = driverManager.getDriver().findElement(By.xpath(appsAndLinksLocator));
 		if (appsAndLinksLinkWebElement.isDisplayed())
@@ -243,19 +270,21 @@ public class HomePage {
 		if (addNewAppLinkElement.isDisplayed())
 			addNewAppLinkElement.click();
 	}
-	
+
 	public void viewNewsPageLinkClick() {
-		WebElement viewNewsPageLinkElement = driverManager.getDriver().findElement(By.xpath(latestNewsViewAllLinkLocator));
+		WebElement viewNewsPageLinkElement = driverManager.getDriver()
+				.findElement(By.xpath(latestNewsViewAllLinkLocator));
 		if (viewNewsPageLinkElement.isDisplayed())
 			viewNewsPageLinkElement.click();
 	}
-	
+
 	public void addAppModalCloseLinkClick() {
-		WebElement addAppModalCloseLinkElement = driverManager.getDriver().findElement(By.xpath(addAppModalCloseLocator));
+		WebElement addAppModalCloseLinkElement = driverManager.getDriver()
+				.findElement(By.xpath(addAppModalCloseLocator));
 		if (addAppModalCloseLinkElement.isDisplayed())
 			addAppModalCloseLinkElement.click();
 	}
-	
+
 	public void goToHomePage() {
 		this.driver.get(
 				constantsPropertiesManager.getSharedExecutionConstants().getProperty("northeastern.edu_homepageurl"));
@@ -277,7 +306,7 @@ public class HomePage {
 		this.driver = driver;
 	}
 
-	public WebElement getViewAllNewsPageElement() {	
+	public WebElement getViewAllNewsPageElement() {
 		return driverManager.getDriver().findElement(By.xpath(latestNewsViewAllLinkLocator));
 	}
 

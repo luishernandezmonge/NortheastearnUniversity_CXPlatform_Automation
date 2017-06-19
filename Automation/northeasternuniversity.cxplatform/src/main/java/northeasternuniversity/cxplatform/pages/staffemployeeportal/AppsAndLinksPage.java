@@ -54,6 +54,11 @@ public class AppsAndLinksPage {
 	private String relatedCategoriesAcademicResourcesLinksLocator;
 	private String heroTextLocator;
 	private String heroTitleLocator;
+	private String profileManagementPortletDiv;
+	private String profileManagementLink;
+	private String profileManagementPopUp;
+	private String profileManagementPopUpTitle;
+	private String profileManagementPopUpCloseButton;
 
 	/**
 	 * 
@@ -122,6 +127,16 @@ public class AppsAndLinksPage {
 				.getProperty("northeastern.edu.appsandlinkspage.herotext");
 		heroTitleLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.appsandlinkspage.herotitle");
+		profileManagementPortletDiv = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage..profilemanagementcontainer");
+		profileManagementLink = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage..profilemanagementLink");
+		profileManagementPopUp = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage..profilemanagementpopupcontainer");
+		profileManagementPopUpTitle = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage..profilemanagementpopuptitle");
+		profileManagementPopUpCloseButton = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage..profilemanagementpopupclosebutton");
 	}
 
 	public boolean isElementPresent(String path) {
@@ -638,6 +653,46 @@ public class AppsAndLinksPage {
 		}
 
 		return result;
+	}
+
+	public boolean isProfileManagementPortletPresent() {
+		return this.isElementPresent(profileManagementPortletDiv);
+	}
+
+	public boolean isProfileManagementLinkPresent() {
+		return this.isElementPresent(profileManagementLink);
+	}
+
+	public void profileManagementLinkClick() {
+		WebElement profileManagementLink = driverManager.getDriver().findElement(By.xpath(this.profileManagementLink));
+		if (profileManagementLink.isDisplayed())
+			profileManagementLink.click();
+	}
+
+	public boolean isProfileManagementPopupPresentAndDisplayed() {
+		Boolean result = false;
+		if (isElementPresent(profileManagementPopUp)) {
+			WebElement element = driverManager.getDriver().findElement(By.xpath(profileManagementPopUp));
+			if (element.isDisplayed())
+				result = true;
+		}
+
+		return result;
+	}
+
+	public boolean isProfileManagementPopupTitle() {
+		return this.isElementPresent(profileManagementPopUpTitle);
+	}
+
+	public boolean isProfileManagementPopupCloseButton() {
+		return this.isElementPresent(profileManagementPopUpCloseButton);
+	}
+
+	public void profileManagementPopupCloseClick() {
+		WebElement profileManagementPopupClose = driverManager.getDriver()
+				.findElement(By.xpath(this.profileManagementPopUpCloseButton));
+		if (profileManagementPopupClose.isDisplayed())
+			profileManagementPopupClose.click();
 	}
 
 }
