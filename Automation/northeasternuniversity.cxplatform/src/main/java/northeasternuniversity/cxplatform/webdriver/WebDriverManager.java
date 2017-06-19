@@ -22,43 +22,85 @@ public class WebDriverManager {
 		constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		String webBrowserProperty = constantsPropertiesManager.getSharedExecutionConstants().getProperty("webBrowser");
 
-		if (webBrowserProperty.equalsIgnoreCase("PhantomJS")) {
+		if (constantsPropertiesManager.getSharedExecutionConstants().getProperty("environmentToExecuteAutomation")
+				.equalsIgnoreCase("MAC")) {
+			if (webBrowserProperty.equalsIgnoreCase("PhantomJS")) {
 
-			System.setProperty("phantomjs.binary.path",
-					constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomjsExec"));
-			driver = new PhantomJSDriver();
-		}
+				System.setProperty("phantomjs.binary.path",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomjsExec"));
+				driver = new PhantomJSDriver();
+			}
 
-		else if (webBrowserProperty.equalsIgnoreCase("Chrome")) {
+			else if (webBrowserProperty.equalsIgnoreCase("Chrome")) {
 
-			System.setProperty("webdriver.chrome.driver",
-					constantsPropertiesManager.getSharedExecutionConstants().getProperty("chromeExec"));
-			driver = new ChromeDriver();
+				System.setProperty("webdriver.chrome.driver",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("chromeExec"));
+				driver = new ChromeDriver();
 
-		}
+			}
 
-		else if (webBrowserProperty.equalsIgnoreCase("Safari"))
-			driver = new SafariDriver();
+			else if (webBrowserProperty.equalsIgnoreCase("Safari"))
+				driver = new SafariDriver();
 
-		else if (webBrowserProperty.equalsIgnoreCase("IE")) {
-			DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-			if (constantsPropertiesManager.getSharedExecutionConstants().getProperty("BitsVersionForIE")
-					.equalsIgnoreCase("32"))
-				System.setProperty("webdriver.ie.driver",
-						constantsPropertiesManager.getSharedExecutionConstants().getProperty("IEexec32"));
-			else
-				System.setProperty("webdriver.ie.driver",
-						constantsPropertiesManager.getSharedExecutionConstants().getProperty("IEexec64"));
+			else if (webBrowserProperty.equalsIgnoreCase("IE")) {
+				DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+				capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+						true);
+				if (constantsPropertiesManager.getSharedExecutionConstants().getProperty("bitsVersionForIE")
+						.equalsIgnoreCase("32"))
+					System.setProperty("webdriver.ie.driver",
+							constantsPropertiesManager.getSharedExecutionConstants().getProperty("iEexec32"));
+				else
+					System.setProperty("webdriver.ie.driver",
+							constantsPropertiesManager.getSharedExecutionConstants().getProperty("iEexec64"));
 
-			driver = new InternetExplorerDriver();
+				driver = new InternetExplorerDriver();
+			} else {
+				// if not recognized web browser, it run by default with Firefox
+				driver = new FirefoxDriver();
+			}
+
 		} else {
-			// if not recognized web browser, it run by default with Firefox
-			driver = new FirefoxDriver();
+			if (webBrowserProperty.equalsIgnoreCase("PhantomJS")) {
+
+				System.setProperty("phantomjs.binary.path",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomjsExecWin"));
+				driver = new PhantomJSDriver();
+			}
+
+			else if (webBrowserProperty.equalsIgnoreCase("Chrome")) {
+
+				System.setProperty("webdriver.chrome.driver",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("chromeExecWin"));
+				driver = new ChromeDriver();
+
+			}
+
+			else if (webBrowserProperty.equalsIgnoreCase("Safari"))
+				driver = new SafariDriver();
+
+			else if (webBrowserProperty.equalsIgnoreCase("IE")) {
+				DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+				capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+						true);
+				if (constantsPropertiesManager.getSharedExecutionConstants().getProperty("bitsVersionForIE")
+						.equalsIgnoreCase("32"))
+					System.setProperty("webdriver.ie.driver",
+							constantsPropertiesManager.getSharedExecutionConstants().getProperty("iEexec32"));
+				else
+					System.setProperty("webdriver.ie.driver",
+							constantsPropertiesManager.getSharedExecutionConstants().getProperty("iEexec64"));
+
+				driver = new InternetExplorerDriver();
+			} else {
+				// if not recognized web browser, it run by default with Firefox
+				driver = new FirefoxDriver();
+			}
+
 		}
+
 		this.maximizeWindow();
 		driver.get(constantsPropertiesManager.getSharedExecutionConstants().getProperty("northeastern.edu_baseUrl"));
-
 	}
 
 	public void closeConnection() {
