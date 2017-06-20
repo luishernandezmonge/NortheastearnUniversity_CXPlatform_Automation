@@ -10,6 +10,7 @@ import northeasternuniversity.cxplatform.utilities.PageChecker;
 import org.testng.annotations.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -413,6 +414,46 @@ public class AppsAndLinksTestCases {
 		
 		Assert.assertTrue(appsAndLinksPage.isTheCorrectDataForHeroTitle(expectedDataForHeroTitle));
 		Assert.assertTrue(appsAndLinksPage.isTheCorrectDataForHeroText(expectedDataForHeroText));
+	}
+	
+	@Test(priority = 2)
+	public void NUCP156() {
+		// JIRA test case ID & Description for Automated Test Case
+		System.out.println("Test Case NUCP-156:" + "\n"
+				+ "Summary: Verify that the application displays properly the info on the tooltip cloud when the user position the pointer over a link info icon");
+
+		// Waiting for the web browser, it should loads all the new elements on
+		// the DOM
+		homePage.getDriverManager().driverLongWait();
+		
+		Assert.assertTrue(appsAndLinksPage.isMostRelevantAcademicResourcesDivElementPresent());
+		
+		if (appsAndLinksPage.hasMostRelevantAcademicResourcesLinks()) {
+			List<WebElement> listOfMostRelevantAcademicResourcesList = this.appsAndLinksPage
+					.getAllElementsOnMostRelevanAcademicResourcesLinks();
+			
+			for (WebElement parentDivElement: listOfMostRelevantAcademicResourcesList){
+				appsAndLinksPage.getDriverManager().driverShortWait();
+				
+				// move over the element
+				Actions actions = new Actions(this.appsAndLinksPage.getDriverManager().getDriver());
+				actions.moveToElement(parentDivElement).build().perform();
+				
+				WebElement infoIconElement = parentDivElement.findElement(By.xpath("i"));
+				WebElement toolTipCloudElement = parentDivElement.findElement(By.xpath("i/div[contains(@class,'tooltip')]"));
+				
+				
+				actions.moveToElement(infoIconElement).build().perform();
+				Assert.assertTrue(infoIconElement.isDisplayed());
+				
+				infoIconElement.click();
+				driverManager.driverShortWait();
+				
+				Assert.assertTrue(toolTipCloudElement.isDisplayed());
+			}
+				
+		}
+		
 	}
 
 	@AfterTest
