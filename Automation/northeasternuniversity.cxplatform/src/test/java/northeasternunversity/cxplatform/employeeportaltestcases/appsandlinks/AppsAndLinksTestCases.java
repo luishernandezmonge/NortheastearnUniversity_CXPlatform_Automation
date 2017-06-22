@@ -39,6 +39,7 @@ public class AppsAndLinksTestCases {
 	String expectedURLForJumpToBenefits;
 	String expectedDataForHeroTitle;
 	String expectedDataForHeroText;
+	String expectedWordForSearchAppsResults;
 
 	@BeforeTest
 	public void beforeTest() {
@@ -81,7 +82,8 @@ public class AppsAndLinksTestCases {
 		this.expectedDataForHeroTitle = dataSourceManager.getDataValue(1);
 		this.dataSourceManager.setTestDataRow(13);
 		this.expectedDataForHeroText = dataSourceManager.getDataValue(1);
-
+		this.dataSourceManager.setTestDataRow(15);
+		this.expectedWordForSearchAppsResults = dataSourceManager.getDataValue(1);
 		dataSourceManager.closeIO();
 	}
 
@@ -356,7 +358,8 @@ public class AppsAndLinksTestCases {
 			appsAndLinksPage.getDriverManager().driverShortWait();
 			int mostRelevantAcademicResourcesLinksAmountAfterClick = this.appsAndLinksPage
 					.getAllElementsOnMostRelevanAcademicResourcesLinks().size();
-			Assert.assertNotEquals(mostRelevantAcademicResourcesLinksAmountBeforeClick, mostRelevantAcademicResourcesLinksAmountAfterClick);
+			Assert.assertNotEquals(mostRelevantAcademicResourcesLinksAmountBeforeClick,
+					mostRelevantAcademicResourcesLinksAmountAfterClick);
 		}
 
 		Assert.assertFalse(appsAndLinksPage.isSeeAllOthersAcademicResourcesLinkElementPresent());
@@ -397,7 +400,7 @@ public class AppsAndLinksTestCases {
 		}
 
 	}
-	
+
 	// @Test(priority = 8, dependsOnMethods = { "NUCP179" })
 	@Test(priority = 2)
 	public void NUCP59() {
@@ -410,12 +413,12 @@ public class AppsAndLinksTestCases {
 		homePage.getDriverManager().driverLongWait();
 		// Verifying if the Element to be clicked is present on the DOM
 		Assert.assertTrue(appsAndLinksPage.isHeroTitleElementPresent());
-		Assert.assertTrue(appsAndLinksPage.isHeroTextElementPresent()); 
-		
+		Assert.assertTrue(appsAndLinksPage.isHeroTextElementPresent());
+
 		Assert.assertTrue(appsAndLinksPage.isTheCorrectDataForHeroTitle(expectedDataForHeroTitle));
 		Assert.assertTrue(appsAndLinksPage.isTheCorrectDataForHeroText(expectedDataForHeroText));
 	}
-	
+
 	@Test(priority = 2)
 	public void NUCP156() {
 		// JIRA test case ID & Description for Automated Test Case
@@ -425,35 +428,89 @@ public class AppsAndLinksTestCases {
 		// Waiting for the web browser, it should loads all the new elements on
 		// the DOM
 		homePage.getDriverManager().driverLongWait();
-		
+
 		Assert.assertTrue(appsAndLinksPage.isMostRelevantAcademicResourcesDivElementPresent());
-		
+
 		if (appsAndLinksPage.hasMostRelevantAcademicResourcesLinks()) {
 			List<WebElement> listOfMostRelevantAcademicResourcesList = this.appsAndLinksPage
 					.getAllElementsOnMostRelevanAcademicResourcesLinks();
-			
-			for (WebElement parentDivElement: listOfMostRelevantAcademicResourcesList){
+
+			for (WebElement parentDivElement : listOfMostRelevantAcademicResourcesList) {
 				appsAndLinksPage.getDriverManager().driverShortWait();
-				
+
 				// move over the element
 				Actions actions = new Actions(this.appsAndLinksPage.getDriverManager().getDriver());
 				actions.moveToElement(parentDivElement).build().perform();
-				
+
 				WebElement infoIconElement = parentDivElement.findElement(By.xpath("i"));
-				WebElement toolTipCloudElement = parentDivElement.findElement(By.xpath("i/div[contains(@class,'tooltip')]"));
-				
-				
+				WebElement toolTipCloudElement = parentDivElement
+						.findElement(By.xpath("i/div[contains(@class,'tooltip')]"));
+
 				actions.moveToElement(infoIconElement).build().perform();
 				Assert.assertTrue(infoIconElement.isDisplayed());
-				
+
 				infoIconElement.click();
 				driverManager.driverShortWait();
-				
+
 				Assert.assertTrue(toolTipCloudElement.isDisplayed());
 			}
-				
+
 		}
+
+	}
+
+	@Test(priority = 2)
+	public void NUCP60() {
+		// JIRA test case ID & Description for Automated Test Case
+		System.out.println("Test Case NUCP-60:" + "\n"
+				+ "Summary: Verify that the application allows to filter and search Apps when valid keywords are provided on the search box");
+
+		// Waiting for the web browser, it should loads all the new elements on
+		// the DOM
+		homePage.getDriverManager().driverLongWait();
+
+		Assert.assertTrue(appsAndLinksPage.isSearchAppsPortletPresent());
+		Assert.assertTrue(appsAndLinksPage.isSearchAppsBoxPresent());
+
+		appsAndLinksPage.setAppsSearchCriteria(expectedWordForSearchAppsResults);
+		appsAndLinksPage.getDriverManager().driverShortWait();
+
+		Assert.assertTrue(appsAndLinksPage.isSearchAppsResultsListPresentAndDisplayed());
+		if (appsAndLinksPage.hasAppsSearchResultItems()) {
+			List<WebElement> appsSearchResults = appsAndLinksPage.getAllAppsSearchResultItems();
+
+			for (WebElement parentDivElement : appsSearchResults) {
+				WebElement appTextElement = parentDivElement
+						.findElement(By.xpath("div/div[contains(@class,'text-field')]/p"));
+				WebElement appDescriptionElement = parentDivElement
+						.findElement(By.xpath("div/div[contains(@class,'card-col-gutters')]/p"));
+
+				Assert.assertTrue(appTextElement.getText().contains(expectedWordForSearchAppsResults));
+				Assert.assertTrue(appDescriptionElement.getText().contains(expectedWordForSearchAppsResults));
+			}
+		}
+
+	}
+	
+	@Test(priority = 3, dependsOnMethods = { "NUCP60" })
+	public void NUCP61() {
+		// JIRA test case ID & Description for Automated Test Case
+		System.out.println("Test Case NUCP-61:" + "\n"
+				+ "Summary: Verify that the application allows to clear the search box and the results when the “x” icon is clicked");
+
+		// Waiting for the web browser, it should loads all the new elements on
+		// the DOM
+		appsAndLinksPage.getDriverManager().driverLongWait();
+
+		Assert.assertTrue(appsAndLinksPage.isSearchAppsResultsListPresentAndDisplayed());
+	
+		Assert.assertTrue(appsAndLinksPage.isSearchAppsCloseResultsButtonPresentAndDisplayed());
 		
+		appsAndLinksPage.searchAppsCloseResultsButtonClick();
+		appsAndLinksPage.getDriverManager().driverShortWait();
+		
+		Assert.assertFalse(appsAndLinksPage.isSearchAppsResultsListPresentAndDisplayed());
+
 	}
 
 	@AfterTest

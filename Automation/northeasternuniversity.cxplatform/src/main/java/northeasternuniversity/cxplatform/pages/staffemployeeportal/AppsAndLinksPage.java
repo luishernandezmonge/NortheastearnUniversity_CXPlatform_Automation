@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -59,7 +60,11 @@ public class AppsAndLinksPage {
 	private String profileManagementPopUp;
 	private String profileManagementPopUpTitle;
 	private String profileManagementPopUpCloseButton;
-
+	private String appsSearchPortletContainerLocator;
+	private String appsSearchBoxLocator;
+	private String appsSearchResultsListLocator;
+	private String appsSearchResultsListItemsLocator;
+	private String appsSearchResultsCloseButtonLocator;
 	/**
 	 * 
 	 */
@@ -128,15 +133,25 @@ public class AppsAndLinksPage {
 		heroTitleLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.appsandlinkspage.herotitle");
 		profileManagementPortletDiv = uIElementsManager.getSharedUIElementsLocators()
-				.getProperty("northeastern.edu.appsandlinkspage..profilemanagementcontainer");
+				.getProperty("northeastern.edu.appsandlinkspage.profilemanagementcontainer");
 		profileManagementLink = uIElementsManager.getSharedUIElementsLocators()
-				.getProperty("northeastern.edu.appsandlinkspage..profilemanagementLink");
+				.getProperty("northeastern.edu.appsandlinkspage.profilemanagementLink");
 		profileManagementPopUp = uIElementsManager.getSharedUIElementsLocators()
-				.getProperty("northeastern.edu.appsandlinkspage..profilemanagementpopupcontainer");
+				.getProperty("northeastern.edu.appsandlinkspage.profilemanagementpopupcontainer");
 		profileManagementPopUpTitle = uIElementsManager.getSharedUIElementsLocators()
-				.getProperty("northeastern.edu.appsandlinkspage..profilemanagementpopuptitle");
+				.getProperty("northeastern.edu.appsandlinkspage.profilemanagementpopuptitle");
 		profileManagementPopUpCloseButton = uIElementsManager.getSharedUIElementsLocators()
-				.getProperty("northeastern.edu.appsandlinkspage..profilemanagementpopupclosebutton");
+				.getProperty("northeastern.edu.appsandlinkspage.profilemanagementpopupclosebutton");
+		appsSearchPortletContainerLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.appssearchportletcontainer");
+		appsSearchBoxLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.appssearchbox");
+		appsSearchResultsListLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.appssearchresultslistcontainer");
+		appsSearchResultsListItemsLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.appssearchresultslist");
+		appsSearchResultsCloseButtonLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.appssearchresultsclosebutton");
 	}
 
 	public boolean isElementPresent(String path) {
@@ -693,6 +708,72 @@ public class AppsAndLinksPage {
 				.findElement(By.xpath(this.profileManagementPopUpCloseButton));
 		if (profileManagementPopupClose.isDisplayed())
 			profileManagementPopupClose.click();
+	}
+
+	public boolean isSearchAppsPortletPresent() {
+		return this.isElementPresent(appsSearchPortletContainerLocator);
+	}
+
+	public boolean isSearchAppsBoxPresent() {
+		return this.isElementPresent(appsSearchBoxLocator);
+	}
+
+	public void setAppsSearchCriteria(String criteria) {
+		if (isSearchAppsBoxPresent()) {
+			WebElement appsSearchBox = driverManager.getDriver().findElement(By.xpath(this.appsSearchBoxLocator));
+			appsSearchBox.click();
+			appsSearchBox.clear();
+			appsSearchBox.sendKeys(criteria);
+			appsSearchBox.sendKeys(Keys.RETURN);
+			driverManager.driverShortWait();
+		}
+	}
+
+	public boolean isSearchAppsResultsListPresentAndDisplayed() {
+		Boolean result = false;
+		if (isElementPresent(appsSearchResultsListLocator)) {
+			WebElement element = driverManager.getDriver().findElement(By.xpath(appsSearchResultsListLocator));
+			if (element.isDisplayed())
+				result = true;
+		}
+		return result;
+	}
+
+	public Boolean hasAppsSearchResultItems() {
+		int appsSearchResultsListSize = this.driverManager.getDriver()
+				.findElements(By.xpath(appsSearchResultsListItemsLocator)).size();
+		if (isSearchAppsResultsListPresentAndDisplayed()) {
+			if (appsSearchResultsListSize > 0)
+				return true;
+			else
+				return false;
+		} else
+			return false;
+
+	}
+
+	public List<WebElement> getAllAppsSearchResultItems() {
+		List<WebElement> listOfAppsSerachResultsItems;
+		listOfAppsSerachResultsItems = this.driverManager.getDriver()
+				.findElements(By.xpath(appsSearchResultsListItemsLocator));
+		return listOfAppsSerachResultsItems;
+	}
+
+	public boolean isSearchAppsCloseResultsButtonPresentAndDisplayed() {
+		Boolean result = false;
+		if (isElementPresent(appsSearchResultsCloseButtonLocator)) {
+			WebElement element = driverManager.getDriver().findElement(By.xpath(appsSearchResultsCloseButtonLocator));
+			if (element.isDisplayed())
+				result = true;
+		}
+		return result;
+	}
+
+	public void searchAppsCloseResultsButtonClick() {
+		WebElement searchAppsCloseResultsButtonElement = driverManager.getDriver()
+				.findElement(By.xpath(appsSearchResultsCloseButtonLocator));
+		if (searchAppsCloseResultsButtonElement.isDisplayed())
+			searchAppsCloseResultsButtonElement.click();
 	}
 
 }
