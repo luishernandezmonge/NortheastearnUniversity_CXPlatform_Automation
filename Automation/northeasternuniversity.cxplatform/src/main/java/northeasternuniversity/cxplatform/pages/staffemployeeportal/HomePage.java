@@ -40,6 +40,11 @@ public class HomePage {
 	private String latestNewsViewAllLinkLocator;
 	private String latestNewsDivsListItemsLocator;
 	private String latestNewsDivContainerLocator;
+	private String latestEventsPortletLocator;
+	private String latestEventsViewAllLinkLocator;
+	private String latestEventsDivsListItemsLocator;
+	private String latestEventsDivContainerLocator;
+
 	/**
 	 * 
 	 */
@@ -77,10 +82,18 @@ public class HomePage {
 				.getProperty("northeastern.edu.dashboardpage.latestnews.vewAllNewsLink");
 		latestNewsPortletLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.dashboardpage.latestnewsportlet");
-		latestNewsDivsListItemsLocator=  uIElementsManager.getSharedUIElementsLocators()
+		latestNewsDivsListItemsLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.dashboardpage.latestnewsdivlistitems");
-		latestNewsDivContainerLocator=  uIElementsManager.getSharedUIElementsLocators()
+		latestNewsDivContainerLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.dashboardpage.latestnewsdivcontainer");
+		latestEventsPortletLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.latesteventsportlet");
+		latestEventsViewAllLinkLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.latestevents.vewAllEventsLink");
+		latestEventsDivsListItemsLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.latesteventsdivlistitems");
+		latestEventsDivContainerLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.latesteventsdivcontainer");
 	}
 
 	public boolean isElementPresent(String path) {
@@ -122,9 +135,10 @@ public class HomePage {
 	public Boolean isLatestNewsPortletDivContainerPresent() {
 		return this.isElementPresent(latestNewsDivContainerLocator);
 	}
+
 	public Boolean hasLastesNewsLinks() {
-		int latestNewsLinksSize = this.driverManager.getDriver()
-				.findElements(By.xpath(latestNewsDivsListItemsLocator)).size();
+		int latestNewsLinksSize = this.driverManager.getDriver().findElements(By.xpath(latestNewsDivsListItemsLocator))
+				.size();
 		if (isLatestNewsPortletDivContainerPresent()) {
 			if (latestNewsLinksSize > 0)
 				return true;
@@ -133,11 +147,49 @@ public class HomePage {
 		} else
 			return false;
 	}
-	
+
 	public List<WebElement> getAllElementsOnLatestNewsPortlet() {
 		List<WebElement> listOfLatestNews;
 		listOfLatestNews = this.driverManager.getDriver().findElements(By.xpath(latestNewsDivsListItemsLocator));
 		return listOfLatestNews;
+	}
+
+	public WebElement getViewAllNewsPageElement() {
+		return driverManager.getDriver().findElement(By.xpath(latestNewsViewAllLinkLocator));
+	}
+
+	public boolean isLatestEventsPortletPresent() {
+		return this.isElementPresent(latestEventsPortletLocator);
+	}
+
+	public boolean isViewLatestEventsPageLinkPresent() {
+		return this.isElementPresent(latestEventsViewAllLinkLocator);
+	}
+
+	public WebElement getViewAllEventsPageElement() {
+		return driverManager.getDriver().findElement(By.xpath(latestEventsViewAllLinkLocator));
+	}
+
+	public boolean isLatestEventsPortletDivContainerPresent() {
+		return this.isElementPresent(latestEventsDivContainerLocator);
+	}
+
+	public Boolean hasLastesEventsLinks() {
+		int latestEventsLinksSize = this.driverManager.getDriver()
+				.findElements(By.xpath(latestEventsDivsListItemsLocator)).size();
+		if (isLatestNewsPortletDivContainerPresent()) {
+			if (latestEventsLinksSize > 0)
+				return true;
+			else
+				return false;
+		} else
+			return false;
+	}
+
+	public List<WebElement> getAllElementsOnLatestEventsPortlet() {
+		List<WebElement> listOfLatestEvetns;
+		listOfLatestEvetns = this.driverManager.getDriver().findElements(By.xpath(latestEventsDivsListItemsLocator));
+		return listOfLatestEvetns;
 	}
 
 	public Boolean isAddAppModalDisplayedAndPresent() {
@@ -304,10 +356,6 @@ public class HomePage {
 
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
-	}
-
-	public WebElement getViewAllNewsPageElement() {
-		return driverManager.getDriver().findElement(By.xpath(latestNewsViewAllLinkLocator));
 	}
 
 }

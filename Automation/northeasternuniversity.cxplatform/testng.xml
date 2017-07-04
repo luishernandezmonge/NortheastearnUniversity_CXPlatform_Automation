@@ -18,6 +18,8 @@
 				name="northeasternunversity.cxplatform.employeeportaltestcases.dashboard.MyAppsTestCases" />
 			<class
 				name="northeasternunversity.cxplatform.employeeportaltestcases.dashboard.LatestNewsTestCases" />
+			<class
+				name="northeasternunversity.cxplatform.employeeportaltestcases.dashboard.LatestEventsTestCases" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
