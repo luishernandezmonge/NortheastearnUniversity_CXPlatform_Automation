@@ -186,7 +186,7 @@ public class HomePage {
 	public Boolean hasLastesEventsLinks() {
 		int latestEventsLinksSize = this.driverManager.getDriver()
 				.findElements(By.xpath(latestEventsDivsListItemsLocator)).size();
-		if (isLatestNewsPortletDivContainerPresent()) {
+		if (isLatestEventsPortletDivContainerPresent()) {
 			if (latestEventsLinksSize > 0)
 				return true;
 			else

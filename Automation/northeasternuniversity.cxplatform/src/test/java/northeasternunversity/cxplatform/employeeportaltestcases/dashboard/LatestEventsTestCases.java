@@ -103,10 +103,6 @@ public class LatestEventsTestCases {
 		System.out.println("Test Case NUCP-81:" + "\n"
 				+ "Summary: Verify that the application redirects to the proper page when a link is clicked on the Events section of Dashboard");
 
-		loginPage.setCredentials(userName, password);
-		loginPage.loginClick();
-		homePage.goToHomePage();
-
 		loginPage.getDriverManager().driverLongWait();
 
 		// Verifying if we are positioned on the landing page

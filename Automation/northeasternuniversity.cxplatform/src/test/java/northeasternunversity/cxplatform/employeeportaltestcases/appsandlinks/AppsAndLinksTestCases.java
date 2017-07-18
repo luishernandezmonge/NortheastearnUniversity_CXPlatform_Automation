@@ -128,7 +128,7 @@ public class AppsAndLinksTestCases {
 
 				WebElement AppNameLinkElement = divParentElement
 						.findElement(By.xpath("a[contains(@class,'app-name')]"));
-				WebElement AppImageLinkElement = divParentElement.findElement(By.xpath("a[@class='anchor-image']"));
+				WebElement AppImageLinkElement = divParentElement.findElement(By.xpath("a[contains(@class,'anchor-image')]"));
 
 				Assert.assertTrue(appsAndLinksPage.compareHREFAttributeOfAppClickableDivElements(AppNameLinkElement,
 						AppImageLinkElement));
@@ -271,7 +271,8 @@ public class AppsAndLinksTestCases {
 		}
 
 	}
-
+ 
+	/*
 	// @Test(priority = 6, dependsOnMethods = { "NUCP57" })
 	@Test(priority = 2)
 	public void NUCP173() {
@@ -299,10 +300,10 @@ public class AppsAndLinksTestCases {
 
 		Assert.assertFalse(appsAndLinksPage.isSeeAllOthersLibraryLinkElementPresent());
 
-	}
+	}*/
 
 	// @Test(priority = 7, dependsOnMethods = { "NUCP173" })
-	@Test(priority = 2)
+	/*@Test(priority = 2)
 	public void NUCP174() {
 		// JIRA test case ID & Description for Automated Test Case
 		System.out.println("Test Case NUCP-174:" + "\n"
@@ -334,7 +335,7 @@ public class AppsAndLinksTestCases {
 			}
 		}
 
-	}
+	}*/
 
 	// @Test(priority = 6, dependsOnMethods = { "NUCP174" })
 	@Test(priority = 2)
@@ -410,7 +411,7 @@ public class AppsAndLinksTestCases {
 
 		// Waiting for the web browser, it should loads all the new elements on
 		// the DOM
-		homePage.getDriverManager().driverLongWait();
+		homePage.getDriverManager().driverLongWait();	
 		// Verifying if the Element to be clicked is present on the DOM
 		Assert.assertTrue(appsAndLinksPage.isHeroTitleElementPresent());
 		Assert.assertTrue(appsAndLinksPage.isHeroTextElementPresent());
@@ -503,7 +504,6 @@ public class AppsAndLinksTestCases {
 		appsAndLinksPage.getDriverManager().driverLongWait();
 
 		Assert.assertTrue(appsAndLinksPage.isSearchAppsResultsListPresentAndDisplayed());
-	
 		Assert.assertTrue(appsAndLinksPage.isSearchAppsCloseResultsButtonPresentAndDisplayed());
 		
 		appsAndLinksPage.searchAppsCloseResultsButtonClick();

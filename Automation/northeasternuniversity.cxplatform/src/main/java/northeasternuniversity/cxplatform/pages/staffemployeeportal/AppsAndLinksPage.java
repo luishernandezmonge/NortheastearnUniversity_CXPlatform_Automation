@@ -203,9 +203,9 @@ public class AppsAndLinksPage {
 
 	public Boolean isTheCorrectData(String expectedData, WebElement elementToVerify) {
 		Boolean result = false;
-
-		if (elementToVerify.getText().equalsIgnoreCase(expectedData))
-			result = true;
+		String elementText = elementToVerify.getText().toLowerCase().trim();
+		if (expectedData.toLowerCase().trim().equalsIgnoreCase(elementText)){
+			result = true;}
 
 		return result;
 	}
@@ -387,7 +387,7 @@ public class AppsAndLinksPage {
 
 	public Boolean hasRelatedCategoriesAcademicResourcesLinks() {
 		int relatedCategoriesAcademicResourcesLinksSize = this.driverManager.getDriver()
-				.findElements(By.xpath(relatedCategoriesLibraryLinksLocator)).size();
+				.findElements(By.xpath(relatedCategoriesAcademicResourcesLinksLocator)).size();
 		if (isRelatedCategoriesAcademicResourcesDivElementPresent()) {
 			if (relatedCategoriesAcademicResourcesLinksSize > 0)
 				return true;
