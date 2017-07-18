@@ -134,7 +134,8 @@ public class QuickLinkAndRecentLinkTestCases {
 		// the DOM
 		homePage.getDriverManager().driverLongWait();
 		// Verifying if the recent link list is present on the DOM
-		Assert.assertFalse(appsAndLinksPage.isRecentLinksListULElementPresent());
+		Assert.assertTrue(appsAndLinksPage.isRecentLinksListULElementPresent());
+		Assert.assertFalse(appsAndLinksPage.hasRecentLinks());
 	}
 
 	@Test(priority = 4, dependsOnMethods = { "NUCP27" })

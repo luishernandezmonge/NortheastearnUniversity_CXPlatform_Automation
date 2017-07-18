@@ -65,6 +65,10 @@ public class AppsAndLinksPage {
 	private String appsSearchResultsListLocator;
 	private String appsSearchResultsListItemsLocator;
 	private String appsSearchResultsCloseButtonLocator;
+	private String recentLinksAppsListULLocator;
+	private String quickLinksAppsListULLocator;
+	private String recentLinksAppsListLocator;
+	private String quickLinksAppsListLocator;
 	/**
 	 * 
 	 */
@@ -83,7 +87,15 @@ public class AppsAndLinksPage {
 		recentLinksListLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.appsandlinkspage.recentlinkslist");
 		quickLinksListLocator = uIElementsManager.getSharedUIElementsLocators()
-				.getProperty("northeastern.edu.appsandlinkspage.quicklinkslist");
+				.getProperty("northeastern.edu.appsandlinkspage.quicklinkslist");	
+		recentLinksAppsListULLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.recentlinksappslistul");
+		quickLinksAppsListULLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.quicklinksappslistul");
+		recentLinksAppsListLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.recentlinksappslist");
+		quickLinksAppsListLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.appsandlinkspage.quicklinksappslist");	
 		appsDivListLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.appsandlinkspage.appsdivslist");
 		appsportletlistcontainerLocator = uIElementsManager.getSharedUIElementsLocators()
@@ -536,6 +548,11 @@ public class AppsAndLinksPage {
 		List<WebElement> recentLinkslist = this.getAllElementsOnRecentLinksList();
 		for (WebElement element : recentLinkslist) {
 			String elementText = element.getText();
+			
+			// move over the element
+			Actions actions = new Actions(this.driverManager.getDriver());
+			actions.moveToElement(element).build().perform();
+			
 			String xpathOfPinElement = recentLinksListLocator + "/a[contains(text(),'" + elementText + "')]/../i";
 			WebElement pinElement = this.driverManager.getDriver().findElement(By.xpath(xpathOfPinElement));
 			pinElement.click();

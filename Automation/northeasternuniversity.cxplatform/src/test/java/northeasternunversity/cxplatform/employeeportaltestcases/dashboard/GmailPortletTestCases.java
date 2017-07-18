@@ -63,9 +63,9 @@ public class GmailPortletTestCases {
 		this.dataSourceManager.setTestDataRow(17);
 		this.expectedURLForAuthorizationPageToContinueToTitleDescription = dataSourceManager.getDataValue(1);
 		this.dataSourceManager.setTestDataRow(18);
-		this.expectedURLForAuthorizationPageToContinueToTitleDescription = dataSourceManager.getDataValue(1);
-		this.dataSourceManager.setTestDataRow(19);
 		this.expectedBaseUrlAuthorizationPage = dataSourceManager.getDataValue(1);
+		this.dataSourceManager.setTestDataRow(19);
+		this.expectedTitleForAuthorizationPageToContinueTo = dataSourceManager.getDataValue(1);
 		dataSourceManager.closeIO();
 	}
 
@@ -102,7 +102,9 @@ public class GmailPortletTestCases {
 
 		String winHandle = handles.iterator().next();
 		homePage.getDriverManager().getDriver().switchTo().window(winHandle);
-
+		
+		homePage.getDriverManager().driverShortWait();
+		
 		Assert.assertTrue(homePage.getDriverManager().getDriver().getCurrentUrl()
 				.contains(expectedBaseUrlAuthorizationPage));
 		Assert.assertTrue(homePage.isNorteasternLinkPresent());
