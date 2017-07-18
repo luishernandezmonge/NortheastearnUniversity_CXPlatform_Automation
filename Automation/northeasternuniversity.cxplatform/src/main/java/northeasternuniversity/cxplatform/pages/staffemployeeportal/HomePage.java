@@ -44,6 +44,9 @@ public class HomePage {
 	private String latestEventsViewAllLinkLocator;
 	private String latestEventsDivsListItemsLocator;
 	private String latestEventsDivContainerLocator;
+	private String gmailPortletLocator;
+	private String gmailPortletAuthorizeButton;
+	private String noreasthernLinkOnAuthorizeLocator;
 
 	/**
 	 * 
@@ -94,6 +97,12 @@ public class HomePage {
 				.getProperty("northeastern.edu.dashboardpage.latesteventsdivlistitems");
 		latestEventsDivContainerLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.dashboardpage.latesteventsdivcontainer");
+		gmailPortletLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.gmailportlet");
+		gmailPortletAuthorizeButton = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.gmail.authorizebutton");
+		noreasthernLinkOnAuthorizeLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.gmail.authorizepage.northeasternlink");
 	}
 
 	public boolean isElementPresent(String path) {
@@ -356,6 +365,36 @@ public class HomePage {
 
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
+	}
+
+	public boolean isGmailPortletPresent() {
+		return this.isElementPresent(gmailPortletLocator);
+	}
+
+	public boolean isAuthorizeButtonPresent() {
+		return this.isElementPresent(gmailPortletAuthorizeButton);
+	}
+
+	public void authorizeButtonClick() {
+		WebElement authorizeButtonWebElement = driverManager.getDriver()
+				.findElement(By.xpath(gmailPortletAuthorizeButton));
+		if (authorizeButtonWebElement.isDisplayed())
+			authorizeButtonWebElement.click();
+	}
+
+	public boolean isNorteasternLinkPresent() {
+		return this.isElementPresent(noreasthernLinkOnAuthorizeLocator);
+	}
+
+	public WebElement getNorteasternLinkElement() {
+		return driverManager.getDriver().findElement(By.xpath(noreasthernLinkOnAuthorizeLocator));
+	}
+
+	public void norteasternLinkClick() {
+		WebElement norteasternLinkWebElement = driverManager.getDriver()
+				.findElement(By.xpath(noreasthernLinkOnAuthorizeLocator));
+		if (norteasternLinkWebElement.isDisplayed())
+			norteasternLinkWebElement.click();
 	}
 
 }
