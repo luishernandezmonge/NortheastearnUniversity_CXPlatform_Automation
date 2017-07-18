@@ -7,14 +7,9 @@ import northeasternuniversity.cxplatform.pages.staffemployeeportal.*;
 import northeasternuniversity.cxplatform.utilities.DateChecker;
 import northeasternuniversity.cxplatform.utilities.PageChecker;
 import org.testng.annotations.Test;
-import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver.TargetLocator;
-import org.openqa.selenium.WebDriver.Window;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
