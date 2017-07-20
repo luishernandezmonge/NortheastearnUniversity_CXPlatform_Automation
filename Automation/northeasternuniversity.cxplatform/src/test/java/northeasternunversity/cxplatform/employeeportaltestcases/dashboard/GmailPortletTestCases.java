@@ -8,8 +8,6 @@ import northeasternuniversity.cxplatform.utilities.DateChecker;
 import northeasternuniversity.cxplatform.utilities.PageChecker;
 import org.testng.annotations.Test;
 import java.util.Set;
-
-import org.openqa.selenium.Alert;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -88,34 +86,43 @@ public class GmailPortletTestCases {
 		// Waiting for the web browser, it should loads all the elements on the
 		// DOM
 		homePage.getDriverManager().driverShortWait();
-		
-		String parentHandle = homePage.getDriverManager().getDriver().getWindowHandle(); // get the current window handle
-		
+
+		String parentHandle = homePage.getDriverManager().getDriver().getWindowHandle(); // get
+																							// the
+																							// current
+																							// window
+																							// handle
+
 		// Verifying if the Element to be clicked is present on the DOM
 		Assert.assertTrue(homePage.isGmailPortletPresent());
 		Assert.assertTrue(homePage.isAuthorizeButtonPresent());
 
 		homePage.authorizeButtonClick();
-		
+
 		Set<String> handles = homePage.getDriverManager().getDriver().getWindowHandles();
 		handles.remove(parentHandle);
 
 		String winHandle = handles.iterator().next();
 		homePage.getDriverManager().getDriver().switchTo().window(winHandle);
-		
-		homePage.getDriverManager().driverShortWait();
-		
-		Assert.assertTrue(homePage.getDriverManager().getDriver().getCurrentUrl()
-				.contains(expectedBaseUrlAuthorizationPage));
+
+		homePage.getDriverManager().driverLongWait();
+
+		Assert.assertTrue(
+				homePage.getDriverManager().getDriver().getCurrentUrl().contains(expectedBaseUrlAuthorizationPage));
 		Assert.assertTrue(homePage.isNorteasternLinkPresent());
-		Assert.assertTrue(homePage.getNorteasternLinkElement().getText().equalsIgnoreCase(expectedTitleForAuthorizationPageToContinueTo));
+		Assert.assertTrue(homePage.getNorteasternLinkElement().getText()
+				.equalsIgnoreCase(expectedTitleForAuthorizationPageToContinueTo));
 
 		homePage.norteasternLinkClick();
 
-		Alert alert = homePage.getDriverManager().getDriver().switchTo().alert();
-		Assert.assertTrue(alert.getText().contains(expectedURLForAuthorizationPageToContinueToTitleDescription));
-		alert.accept();
-		
+		Assert.assertTrue(homePage.isDeveloperInfoPopupPresentAndDisplayed());
+		Assert.assertTrue(homePage.isAuthorizationPageToContinueToTitleDescriptionPresent());
+		Assert.assertTrue(homePage.getAuthorizationPageToContinueToTitleDescription().getText()
+				.contains(expectedURLForAuthorizationPageToContinueToTitleDescription));
+
+		Assert.assertTrue(homePage.isGotItLinkPresent());
+		homePage.goitLinkClick();
+
 		homePage.getDriverManager().getDriver().switchTo().window(winHandle).close();
 		homePage.getDriverManager().getDriver().switchTo().window(parentHandle);
 

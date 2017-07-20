@@ -6,6 +6,7 @@ package northeasternuniversity.cxplatform.pages.staffemployeeportal;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -47,6 +48,9 @@ public class HomePage {
 	private String gmailPortletLocator;
 	private String gmailPortletAuthorizeButton;
 	private String noreasthernLinkOnAuthorizeLocator;
+	private String noreasthernAuthorizeDeveloperInfoDivLocator;
+	private String noreasthernAuthorizationPageToContinueToDeveloperInfoPopupDescriptionLocator;
+	private String noreasthernAuthorizationPageToContinueToDeveloperInfoPopupGotItLinkLocator;
 
 	/**
 	 * 
@@ -103,6 +107,12 @@ public class HomePage {
 				.getProperty("northeastern.edu.dashboardpage.gmail.authorizebutton");
 		noreasthernLinkOnAuthorizeLocator = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("northeastern.edu.dashboardpage.gmail.authorizepage.northeasternlink");
+		noreasthernAuthorizeDeveloperInfoDivLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.gmail.authorizepage.developerinfodiv");
+		noreasthernAuthorizationPageToContinueToDeveloperInfoPopupDescriptionLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.gmail.authorizepage.developerinfodiv.description");
+		noreasthernAuthorizationPageToContinueToDeveloperInfoPopupGotItLinkLocator = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("northeastern.edu.dashboardpage.gmail.authorizepage.developerinfo.closelink");
 	}
 
 	public boolean isElementPresent(String path) {
@@ -397,4 +407,33 @@ public class HomePage {
 			norteasternLinkWebElement.click();
 	}
 
+	public boolean isDeveloperInfoPopupPresentAndDisplayed() {
+		Boolean result = false;
+		if (isElementPresent(noreasthernAuthorizeDeveloperInfoDivLocator)) {
+			WebElement element = driverManager.getDriver().findElement(By.xpath(noreasthernAuthorizeDeveloperInfoDivLocator));
+			if (element.isDisplayed())
+				result = true;
+		}
+
+		return result;
+	}
+
+	public boolean isAuthorizationPageToContinueToTitleDescriptionPresent() {
+		return this.isElementPresent(noreasthernAuthorizationPageToContinueToDeveloperInfoPopupDescriptionLocator);
+	}
+
+	public WebElement getAuthorizationPageToContinueToTitleDescription() {
+		return driverManager.getDriver().findElement(By.xpath(noreasthernAuthorizationPageToContinueToDeveloperInfoPopupDescriptionLocator));
+	}
+
+	public boolean isGotItLinkPresent() {
+		return this.isElementPresent(noreasthernAuthorizationPageToContinueToDeveloperInfoPopupGotItLinkLocator);
+	}
+	
+	public void goitLinkClick() {
+		WebElement developerInfoGotItLinkWebElement = driverManager.getDriver()
+				.findElement(By.xpath(noreasthernAuthorizationPageToContinueToDeveloperInfoPopupGotItLinkLocator));
+		if (developerInfoGotItLinkWebElement.isDisplayed())
+			developerInfoGotItLinkWebElement.click();
+	}
 }
