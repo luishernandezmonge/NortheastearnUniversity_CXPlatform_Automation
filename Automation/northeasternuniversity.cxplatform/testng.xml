@@ -20,6 +20,8 @@
 				name="northeasternunversity.cxplatform.employeeportaltestcases.dashboard.LatestNewsTestCases" />
 			<class
 				name="northeasternunversity.cxplatform.employeeportaltestcases.dashboard.LatestEventsTestCases" />
+				<class
+				name="northeasternunversity.cxplatform.employeeportaltestcases.dashboard.GmailPortletTestCases" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

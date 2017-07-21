@@ -1,0 +1,10 @@
+northeasternuniversity/cxplatform/utilities/PageChecker.class
+northeasternuniversity/cxplatform/pages/staffemployeeportal/HomePage.class
+northeasternuniversity/cxplatform/utilities/DateChecker.class
+northeasternuniversity/cxplatform/webdriver/WebDriverManager.class
+northeasternuniversity/cxplatform/constants/FilesLocations.class
+northeasternuniversity/cxplatform/pages/staffemployeeportal/AppsAndLinksPage.class
+northeasternuniversity/cxplatform/constants/ConstantsPropertiesManager.class
+northeasternuniversity/cxplatform/constants/UIElementsPropertiesManager.class
+northeasternuniversity/cxplatform/pages/general/LoginPage.class
+northeasternuniversity/cxplatform/constants/DataSourceManager.class
